@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container, Paper } from "@material-ui/core";
 import Header from "../Header/Header";
 import styles from "./LayoutStyles";
-import RootRouter from "../../router/root.router";
+import RootRouter from "../../router/RootRouter";
 
 const Layout = () => {
     const classes = styles();
