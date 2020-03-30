@@ -6,9 +6,9 @@ const UI_HOST_LOCAL = "https://localhost:3000";
 const UI_HOST_CI = "https://shows.shows.ci";
 const UI_HOST_STAGING = "https://shows.staging";
 
-ENV_LOCAL = "ENV_LOCAL"
-ENV_CI = "ENV_CI"
-ENV_STAGING = "ENV_STAGING"
+const ENV_LOCAL = "ENV_LOCAL"
+const ENV_CI = "ENV_CI"
+const ENV_STAGING = "ENV_STAGING"
 
 const HOSTS = {
   ENV_LOCAL : {
@@ -25,7 +25,7 @@ const HOSTS = {
   },
 };
 
-serviceUrl = () => {
+export const serviceUrl = () => {
   const environment = process.env.ENVIRONMENT || ENV_LOCAL;
   return HOSTS[environment].API
 }

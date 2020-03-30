@@ -5,7 +5,6 @@ class ShowModel{
         this.description = description;
         this.price = price;
     }
-
 }
 
 export default ShowModel;
