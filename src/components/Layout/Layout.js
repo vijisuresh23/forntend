@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Container, Paper } from "@material-ui/core";
+import {Box, Container, Paper} from "@material-ui/core";
 import Header from "../Header/Header";
 import styles from "./LayoutStyles";
 import RootRouter from "../../router/RootRouter";
 
-const Layout = () => {
+export default () => {
     const classes = styles();
     return (
         <Box>
@@ -17,6 +17,4 @@ const Layout = () => {
 
         </Box>
     )
-}
-
-export default Layout;
+};

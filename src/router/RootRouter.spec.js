@@ -1,4 +1,4 @@
-import { shallow } from "enzyme/build";
+import {shallow} from "enzyme/build";
 import React from "react";
 import RootRouter from './RootRouter'
 import Shows from "../components/Shows/Shows";

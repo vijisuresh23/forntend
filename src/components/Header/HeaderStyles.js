@@ -1,15 +1,19 @@
-import { makeStyles } from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 
 export default makeStyles({
-  headerLogo: {
-    fontFamily: "Monoton, cursive"
-  },
-  toolbar: {
-    justifyContent: "space-between",
-    padding: "0 4em"
-  },
-  cartButton: {
-    color: "white",
-    padding: "10px"
-  }
+    headerIcon: {
+        fontSize: '2.25em'
+    },
+    headerLogo: {
+        marginLeft: '0.15em'
+    },
+    toolbar: {
+        display: 'flex',
+        justifyContent: "flex-start",
+        padding: "0 4em"
+    },
+    cartButton: {
+        color: "white",
+        padding: "10px"
+    }
 });
