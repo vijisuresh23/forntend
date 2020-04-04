@@ -9,29 +9,29 @@ const UI_HOST_STAGING = "https://shows.staging";
 const ENV_LOCAL = "ENV_LOCAL";
 
 const HOSTS = {
-  ENV_LOCAL : {
-    "API": API_HOST_LOCAL,
-    "UI": UI_HOST_LOCAL
-  },
-  ENV_CI : {
-    "API": API_HOST_CI,
-    "UI": UI_HOST_CI
-  },
-  ENV_STAGING : {
-    "API": API_HOST_STAGING,
-    "UI": UI_HOST_STAGING
-  },
+    ENV_LOCAL: {
+        "API": API_HOST_LOCAL,
+        "UI": UI_HOST_LOCAL
+    },
+    ENV_CI: {
+        "API": API_HOST_CI,
+        "UI": UI_HOST_CI
+    },
+    ENV_STAGING: {
+        "API": API_HOST_STAGING,
+        "UI": UI_HOST_STAGING
+    },
 };
 
 export const serviceUrl = () => {
-  const environment = process.env.ENVIRONMENT || ENV_LOCAL;
-  return HOSTS[environment].API
+    const environment = process.env.ENVIRONMENT || ENV_LOCAL;
+    return HOSTS[environment].API
 };
 
 export const urls = {
-  service:  serviceUrl()
+    service: serviceUrl()
 };
 
 export const featureToggles = {
-    dummy : true
+    dummy: true
 };

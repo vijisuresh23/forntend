@@ -8,10 +8,10 @@ export default () => {
     const classes = styles();
     return (
         <Box>
-            <Header />
+            <Header/>
             <Container maxWidth={"lg"} className={classes.container}>
                 <Paper className={classes.paper}>
-                    <RootRouter />
+                    <RootRouter/>
                 </Paper>
             </Container>
 

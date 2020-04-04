@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {
     Avatar,
+    Backdrop,
+    CircularProgress,
     List,
     ListItem,
     ListItemAvatar,
     ListItemText,
-    Typography,
-    Backdrop,
-    CircularProgress
+    Typography
 } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import LocalMoviesIcon from '@material-ui/icons/LocalMovies';
@@ -44,7 +44,7 @@ export default () => {
                 {
                     shows.map(show => (
                         <div key={show.id}>
-                            <ListItem >
+                            <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
                                         <LocalMoviesIcon/>

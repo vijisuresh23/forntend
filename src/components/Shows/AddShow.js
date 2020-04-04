@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import styles from './styles/ShowStyles'
 import AddShowDialog from "./AddShowDialog";
 
-const AddShow = ({load, onAddShow}) => {
+const AddShow = (props) => {
     const classes = styles();
     const [openDialog, setOpenDialog] = useState(false);
 
@@ -28,7 +28,7 @@ const AddShow = ({load, onAddShow}) => {
             >
                 Add
             </Button>
-            <AddShowDialog open={openDialog} onClose={handleClose} load={load} onAddShow={onAddShow}/>
+            <AddShowDialog open={openDialog} onClose={handleClose} {...props}/>
         </>
     );
 };

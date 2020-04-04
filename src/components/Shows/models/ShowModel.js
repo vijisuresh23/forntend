@@ -1,4 +1,4 @@
-class ShowModel{
+class ShowModel {
     constructor({id, name, description, price}) {
         this.id = id;
         this.name = name;
