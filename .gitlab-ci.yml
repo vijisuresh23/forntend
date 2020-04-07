@@ -9,6 +9,9 @@ stages:
 
 test:
   stage: test
+  artifacts:
+    paths:
+      - build
   variables:
     CI: "true"
   script:
