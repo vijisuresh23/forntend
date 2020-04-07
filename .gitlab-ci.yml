@@ -1,7 +1,11 @@
 image: node:latest
 
+variables:
+  REACT_IMAGE_NAME: registry.gitlab.com/tw-catalyst/booking-web/reactapp
+
 stages:
   - test
+  - package
 
 test:
   stage: test
@@ -12,3 +16,17 @@ test:
     - yarn install
     - yarn test
     - yarn build
+
+package:
+  image: docker:latest
+  stage: package
+  services:
+    - docker:dind
+  environment:
+    name: integration
+  script:
+    - export REACT_IMAGE=$REACT_IMAGE_NAME:$CI_COMMIT_SHORT_SHA-$CI_ENVIRONMENT_SLUG
+    - echo "image info - $REACT_IMAGE"
+    - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
+    - docker build -t $REACT_IMAGE . --no-cache
+    - docker push $REACT_IMAGE
