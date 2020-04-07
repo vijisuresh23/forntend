@@ -5,7 +5,10 @@ stages:
 
 test:
   stage: test
+  variables:
+    CI: "true"
   script:
     - yarn config set cache-folder .yarn
     - yarn install
-    - npm run test
+    - yarn test
+    - yarn build
