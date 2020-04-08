@@ -24,10 +24,10 @@ export default () => {
     const [shows, setShows] = useState([]);
     useEffect(() => {
         ShowService.fetchAll()
-            .then(showsData => {
+            .then(shows => {
                 setLoading(false);
-                setShows(showsData)
-            });
+                setShows(shows);
+            })
     }, []);
 
     const handleAddShow = (showData) => {

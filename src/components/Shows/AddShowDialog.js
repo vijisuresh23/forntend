@@ -43,13 +43,13 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
             description: values.description,
             price: values.price
         };
-        showService.create(payload).then(data => {
-            load(false);
-            onAddShow(data);
-        });
+        showService.create(payload)
+            .then(data => {
+                load(false);
+                onAddShow(data);
+            });
         onClose();
     };
-
 
     return (
         <Dialog open={open} onClose={onClose}>
