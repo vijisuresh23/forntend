@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import {Typography} from "@material-ui/core";
 import styles from "./styles/ErrorStyles"
 import PropTypes from "prop-types";
@@ -17,7 +17,7 @@ const Error = ({ErrorIcon, errorMessage}) => {
 };
 
 Error.propTypes = {
-    ErrorIcon: PropTypes.objectOf(Component).isRequired,
+    ErrorIcon: PropTypes.elementType.isRequired,
     errorMessage: PropTypes.string.isRequired,
 };
 

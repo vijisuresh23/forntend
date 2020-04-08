@@ -8,10 +8,12 @@ export default () => {
     return (
         <AppBar position={"sticky"}>
             <Toolbar className={classes.toolbar}>
-                <MovieIcon className={classes.headerIcon}/>
-                <Typography className={classes.headerLogo} variant="h5">
-                    SkyFox Cinema
-                </Typography>
+                <a href="/" className={classes.headerLink}>
+                    <MovieIcon className={classes.headerIcon}/>
+                    <Typography className={classes.headerLogo} variant="h5">
+                        SkyFox Cinema
+                    </Typography>
+                </a>
             </Toolbar>
         </AppBar>
     );
