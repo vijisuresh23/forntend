@@ -12,13 +12,15 @@ describe('Show Service', () => {
             id: 1,
             name: "n1",
             description: "d1",
-            price: 1
+            price: 1,
+            status: "RUNNING"
         },
             {
                 id: 2,
                 name: "n2",
                 description: "d2",
-                price: 4
+                price: 4,
+                status: "RUNNING"
             }];
 
         apiService.get.mockResolvedValue({data: data});
@@ -30,12 +32,14 @@ describe('Show Service', () => {
             id: 1,
             name: "n1",
             description: "d1",
-            price: 1
+            price: 1,
+            status:"RUNNING"
         }), new ShowModel({
             id: 2,
             name: "n2",
             description: "d2",
-            price: 4
+            price: 4,
+            status:"RUNNING"
         })]);
     });
 
@@ -43,7 +47,8 @@ describe('Show Service', () => {
         const payload = {
             name: "Movie Name",
             description: "Movie Description",
-            price: 100
+            price: 100,
+            status: "RUNNING"
         };
 
         const response = {
@@ -61,7 +66,8 @@ describe('Show Service', () => {
             id: 1,
             name: "Movie Name",
             description: "Movie Description",
-            price: 100
+            price: 100,
+            status: "RUNNING"
         });
     });
 });

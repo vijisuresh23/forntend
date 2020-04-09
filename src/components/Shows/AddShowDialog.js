@@ -5,13 +5,14 @@ import {CURRENCY_SYMBOL} from "../../Constants";
 import {Form, Formik} from "formik";
 import showService from "./services/ShowService"
 import {FormikTextField} from "../Formik";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment} from "@material-ui/core";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment,Select, MenuItem, InputLabel, FormControl} from "@material-ui/core";
 
 const AddShowDialog = ({open, onClose, load, onAddShow}) => {
     const initialValues = {
         name: "",
         description: "",
-        price: ""
+        price: "",
+        status: "RUNNING"
     };
 
     const nameValidationMessage = "Name must be 1 to 30 characters";
@@ -41,7 +42,8 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
         const payload = {
             name: values.name,
             description: values.description,
-            price: values.price
+            price: values.price,
+            status: values.status
         };
         showService.create(payload)
             .then(data => {
@@ -93,6 +95,22 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
                                         fullWidth
                                         autoComplete='off'
                                     />
+                                    <FormControl>
+                                    <InputLabel id="status-label" >Status</InputLabel>
+                                    <Select
+                                        margin="dense"
+                                        name="status"
+                                        labelId="status-label"
+                                        label="Status"
+                                        autoWidth={true}
+                                        defaultValue={"RUNNING"}
+                                        onChange={event => {
+                                           props.values.status= event.target.value
+                                            }}
+                                    >
+                                        <MenuItem name="status" value={"RUNNING"}>Screening Now</MenuItem>
+                                        <MenuItem name="status" value={"UPCOMING"}>Coming Soon</MenuItem>
+                                    </Select></FormControl>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button autoFocus onClick={handleCancel} color="primary">

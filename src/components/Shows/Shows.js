@@ -36,13 +36,19 @@ export default () => {
 
     return (
         <>
-            <Typography variant='h5'>
+            <Typography variant='h4'>
                 Shows
+            </Typography>
+            <br/>
+            <Typography variant='h5'>
+                Current Runnning
             </Typography>
             <Divider/>
             <List className={classes.listRoot}>
                 {
-                    shows.map(show => (
+                    shows
+                        .filter(show => show.status === "RUNNING")
+                        .map(show => (
                         <div key={show.id}>
                             <ListItem>
                                 <ListItemAvatar>
@@ -50,7 +56,7 @@ export default () => {
                                         <LocalMoviesIcon/>
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={show.name} secondary={show.description}/>
+                                <ListItemText primary={show.name} secondary={show.description} />
                                 <ListItemText primary={`${CURRENCY_SYMBOL}${show.price}`} className={classes.price}
                                               primaryTypographyProps={{variant: 'h6', color: 'secondary'}}
                                 />
@@ -60,6 +66,34 @@ export default () => {
                     ))
                 }
             </List>
+            <br/>
+
+            <Typography variant='h5'>
+                Upcoming
+            </Typography>
+            <List className={classes.listRoot}>
+                {
+                    shows
+                        .filter(show => show.status === "UPCOMING")
+                        .map(show => (
+                        <div key={show.id}>
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <LocalMoviesIcon/>
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText primary={show.name} secondary={show.description} />
+                                <ListItemText primary={`${CURRENCY_SYMBOL}${show.price}`} className={classes.price}
+                                              primaryTypographyProps={{variant: 'h6', color: 'secondary'}}
+                                />
+                            </ListItem>
+                            <Divider variant="middle"/>
+                        </div>
+                    ))
+                }
+            </List>
+            <br/>
             <AddShow load={setLoading} onAddShow={handleAddShow}/>
             <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress color="inherit"/>
