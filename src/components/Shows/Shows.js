@@ -41,7 +41,7 @@ export default () => {
             </Typography>
             <br/>
             <Typography variant='h5'>
-                Current Runnning
+                Screening Now
             </Typography>
             <Divider/>
             <List className={classes.listRoot}>
@@ -69,7 +69,7 @@ export default () => {
             <br/>
 
             <Typography variant='h5'>
-                Upcoming
+                Coming Soon
             </Typography>
             <List className={classes.listRoot}>
                 {
