@@ -43,7 +43,7 @@ describe('Api service', () => {
         axios.get.mockRejectedValue(otherErrorResponse);
 
         try {
-            await apiService.get(expect.any(String))
+            await apiService.get(expect.any(String));
             fail("Error not rethrown");
         } catch (error) {
             expect(error).toEqual(otherErrorResponse);
@@ -54,7 +54,7 @@ describe('Api service', () => {
         axios.post.mockRejectedValue(otherErrorResponse);
 
         try {
-            await apiService.get(expect.any(String), expect.any(Object))
+            await apiService.get(expect.any(String), expect.any(Object));
             fail("Error not rethrown");
         } catch (error) {
             expect(error).toEqual(otherErrorResponse);
