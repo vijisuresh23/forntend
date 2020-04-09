@@ -1,9 +1,9 @@
-import axios from "axios";
 import {when} from "jest-when";
 import showService from './ShowService'
 import ShowModel from '../models/ShowModel'
+import apiService from "../../../helpers/apiService";
 
-jest.mock('axios');
+jest.mock('../../../helpers/apiService');
 
 describe('Show Service', () => {
 
@@ -21,7 +21,7 @@ describe('Show Service', () => {
                 price: 4
             }];
 
-        axios.get.mockResolvedValue({data: data});
+        apiService.get.mockResolvedValue({data: data});
         const shows = await showService.fetchAll();
 
         expect(shows).toHaveLength(2);
@@ -51,7 +51,7 @@ describe('Show Service', () => {
             ...payload
         };
 
-        when(axios.post)
+        when(apiService.post)
             .calledWith(expect.any(String), payload)
             .mockResolvedValue({data: response});
 

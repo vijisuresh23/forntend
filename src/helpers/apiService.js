@@ -4,7 +4,7 @@ import {urls} from "../config/env-config";
 const promiseWithErrorHandling = (promise) => {
     return promise.catch(err => {
         if (err.response.status === 500) {
-            document.location.href = '/error';
+            window.location.assign("/error");
         } else {
             throw err;
         }
@@ -12,11 +12,11 @@ const promiseWithErrorHandling = (promise) => {
 };
 
 export default {
-    post: (path, payload) => {
+    post: async (path, payload) => {
         return promiseWithErrorHandling(axios.post(`${urls.service}/${path}`, payload));
     },
 
-    get: (path) => {
+    get: async (path) => {
         return promiseWithErrorHandling(axios.get(`${urls.service}/${path}`));
     }
 };
