@@ -2,13 +2,11 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export default makeStyles((theme) =>
     ({
-        listRoot: {
-            width: '100%',
-            backgroundColor: theme.palette.background.paper
+        cardHeader: {
+            padding: "15px 0 0 15px"
         },
-        price: {
-            display: 'flex',
-            justifyContent: 'flex-end',
+        showsContent: {
+            padding: "0 15px 15px 15px"
         },
         backdrop: {
             zIndex: theme.zIndex.drawer + 1,
@@ -16,7 +14,3 @@ export default makeStyles((theme) =>
         }
     })
 );
-
-
-
-

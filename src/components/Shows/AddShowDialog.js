@@ -5,9 +5,22 @@ import {CURRENCY_SYMBOL} from "../../Constants";
 import {Form, Formik} from "formik";
 import showService from "./services/ShowService"
 import {FormikTextField} from "../Formik";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment,Select, MenuItem, InputLabel, FormControl} from "@material-ui/core";
+import styles from "./styles/AddShowDialogStyles";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    FormControl,
+    InputAdornment,
+    InputLabel,
+    MenuItem,
+    Select
+} from "@material-ui/core";
 
 const AddShowDialog = ({open, onClose, load, onAddShow}) => {
+    const classes = styles();
     const initialValues = {
         name: "",
         description: "",
@@ -17,7 +30,7 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
 
     const nameValidationMessage = "Name must be 1 to 30 characters";
     const descriptionValidationMessage = "Description must be 5 to 200 characters";
-    const priceValidationMessage = `Price must be at least ${CURRENCY_SYMBOL}1`;
+    const priceValidationMessage = `Price must be at least ${CURRENCY_SYMBOL}0.1`;
 
     const formSchema = object({
         name: string("Enter a name")
@@ -30,7 +43,7 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
             .max(200, descriptionValidationMessage),
         price: number("Enter a price")
             .required("Price is required")
-            .min(1, priceValidationMessage)
+            .min(0.1, priceValidationMessage)
     });
 
     const handleCancel = () => {
@@ -54,8 +67,8 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
     };
 
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Add Show</DialogTitle>
+        <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+            <DialogTitle className={classes.dialogTitle}>Add Show</DialogTitle>
             <Formik initialValues={initialValues} onSubmit={createShow} validationSchema={formSchema}>
                 {
                     (props) => {
@@ -64,7 +77,7 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
                         } = props;
                         return (
                             <Form>
-                                <DialogContent>
+                                <DialogContent className={classes.dialogContent}>
                                     <FormikTextField
                                         required
                                         margin="dense"
@@ -92,25 +105,29 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
                                                 position="start">{CURRENCY_SYMBOL}</InputAdornment>
                                         }}
                                         type="number"
-                                        fullWidth
                                         autoComplete='off'
+                                        className={classes.priceInput}
                                     />
-                                    <FormControl>
-                                    <InputLabel id="status-label" >Status</InputLabel>
-                                    <Select
-                                        margin="dense"
-                                        name="status"
-                                        labelId="status-label"
-                                        label="Status"
-                                        autoWidth={true}
-                                        defaultValue={"RUNNING"}
-                                        onChange={event => {
-                                           props.values.status= event.target.value
+                                    <FormControl className={classes.dialogFormControl}>
+                                        <InputLabel id="status-label">Status</InputLabel>
+                                        <Select
+                                            margin="dense"
+                                            name="status"
+                                            labelId="status-label"
+                                            label="Status"
+                                            defaultValue={"RUNNING"}
+                                            onChange={event => {
+                                                props.values.status = event.target.value
                                             }}
-                                    >
-                                        <MenuItem name="status" value={"RUNNING"}>Screening Now</MenuItem>
-                                        <MenuItem name="status" value={"UPCOMING"}>Coming Soon</MenuItem>
-                                    </Select></FormControl>
+                                        >
+                                            <MenuItem name="status" value={"RUNNING"}>
+                                                Screening Now
+                                            </MenuItem>
+                                            <MenuItem name="status" value={"UPCOMING"}>
+                                                Coming Soon
+                                            </MenuItem>
+                                        </Select>
+                                    </FormControl>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button autoFocus onClick={handleCancel} color="primary">

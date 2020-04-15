@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import AddIcon from "@material-ui/icons/Add";
 import {Button} from "@material-ui/core";
 import PropTypes from "prop-types";
-import styles from './styles/ShowStyles'
+import styles from './styles/AddShowStyles'
 import AddShowDialog from "./AddShowDialog";
 
 const AddShow = (props) => {

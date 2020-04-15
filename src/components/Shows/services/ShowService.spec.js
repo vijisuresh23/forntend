@@ -33,13 +33,13 @@ describe('Show Service', () => {
             name: "n1",
             description: "d1",
             price: 1,
-            status:"RUNNING"
+            status: "RUNNING"
         }), new ShowModel({
             id: 2,
             name: "n2",
             description: "d2",
             price: 4,
-            status:"RUNNING"
+            status: "RUNNING"
         })]);
     });
 

@@ -1,8 +1,10 @@
 import React from "react";
 import {useField} from "formik";
 import {TextField} from "@material-ui/core";
+import styles from "./styles/FormikTextFieldStyles";
 
 export default (props) => {
+    const classes = styles();
     const [field, meta] = useField(props.name);
 
     const {value, onChange, onBlur} = field;
@@ -15,6 +17,9 @@ export default (props) => {
             onBlur={onBlur}
             error={touched && Boolean(error)}
             helperText={touched ? error : ''}
+            FormHelperTextProps={{
+                className: classes.helperText
+            }}
             {...props}
         />
     );
