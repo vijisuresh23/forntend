@@ -35,8 +35,8 @@ export default () => {
                 Shows
             </Typography>
             <div className={classes.showsContent}>
-                <ShowsSection name={"Screening Now"} shows={runningShows}/>
-                <ShowsSection name={"Coming Soon"} shows={upcomingShows}/>
+                <ShowsSection name={"Screening Now"} shows={runningShows} emptyMessage="No shows screening now"/>
+                <ShowsSection name={"Coming Soon"} shows={upcomingShows} emptyMessage="No shows coming soon"/>
                 <AddShow load={setLoading} onAddShow={handleAddShow}/>
             </div>
             <Backdrop className={classes.backdrop} open={loading}>

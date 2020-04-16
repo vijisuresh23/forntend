@@ -10,8 +10,8 @@ export default makeStyles((theme) =>
         },
         errorIcon: {
             color: theme.palette.error.main,
-            height: '15em',
-            width: '15em',
+            height: '400px',
+            width: '400px',
             opacity: '0.75'
         }
     })

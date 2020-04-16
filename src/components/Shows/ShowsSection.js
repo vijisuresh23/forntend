@@ -5,8 +5,9 @@ import Divider from "@material-ui/core/Divider";
 import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
 import {CURRENCY_SYMBOL} from "../../Constants";
 import styles from "./styles/ShowsSectionStyles"
+import EmptyShows from "../Common/EmptyShows";
 
-const ShowsSection = ({name, shows}) => {
+const ShowsSection = ({name, shows, emptyMessage}) => {
     const classes = styles();
     const numberOfShows = shows.length;
 
@@ -16,12 +17,13 @@ const ShowsSection = ({name, shows}) => {
         }
     };
 
-    return (
-        <>
-            <Typography variant='h5' className={classes.sectionHeader}>
-                {name}
-            </Typography>
-            <Divider/>
+    const sectionContent = () => {
+        if (numberOfShows === 0) {
+            return (
+                <EmptyShows emptyShowsMessage={emptyMessage}/>
+            );
+        }
+        return (
             <List className={classes.listRoot}>
                 {
                     shows.map((show, index) => (
@@ -42,13 +44,24 @@ const ShowsSection = ({name, shows}) => {
                     ))
                 }
             </List>
+        );
+    };
+
+    return (
+        <>
+            <Typography variant='h5' className={classes.sectionHeader}>
+                {name}
+            </Typography>
+            <Divider/>
+            {sectionContent()}
         </>
     );
 };
 
 ShowsSection.propTypes = {
     name: PropTypes.string.isRequired,
-    shows: PropTypes.array.isRequired
+    shows: PropTypes.array.isRequired,
+    emptyMessage: PropTypes.string.isRequired
 };
 
 export default ShowsSection;
