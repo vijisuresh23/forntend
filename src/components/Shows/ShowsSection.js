@@ -5,7 +5,7 @@ import Divider from "@material-ui/core/Divider";
 import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
 import {CURRENCY_SYMBOL} from "../../Constants";
 import styles from "./styles/ShowsSectionStyles"
-import EmptyShows from "../Common/EmptyShows";
+import {EmptyShows} from "../Common";
 
 const ShowsSection = ({name, shows, emptyMessage}) => {
     const classes = styles();

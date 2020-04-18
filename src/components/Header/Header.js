@@ -1,7 +1,7 @@
 import React from "react";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import MovieIcon from '@material-ui/icons/Movie';
-import styles from "./HeaderStyles";
+import styles from "./styles/HeaderStyles";
 
 export default () => {
     const classes = styles();

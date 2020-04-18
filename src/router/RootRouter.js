@@ -4,7 +4,7 @@ import React from "react";
 import Shows from "../components/Shows/Shows";
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import BlockIcon from '@material-ui/icons/Block';
-import Error from "../components/Common/Error";
+import {Error} from "../components/Common";
 
 export default () => {
     return (

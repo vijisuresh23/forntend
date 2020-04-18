@@ -2,7 +2,7 @@ import {makeStyles} from "@material-ui/core";
 
 export default makeStyles((theme) => ({
         headerLink: {
-            color: theme.palette.background.default,
+            color: theme.palette.primary.contrastText,
             display: 'flex',
             justifyContent: "flex-start",
             textDecoration: 'none'

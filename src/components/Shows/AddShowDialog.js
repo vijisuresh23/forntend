@@ -4,20 +4,9 @@ import {number, object, string} from "yup";
 import {CURRENCY_SYMBOL} from "../../Constants";
 import {Form, Formik} from "formik";
 import showService from "./services/ShowService"
-import {FormikTextField} from "../Formik";
+import {FormikSelect, FormikTextField} from "../Formik";
 import styles from "./styles/AddShowDialogStyles";
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    FormControl,
-    InputAdornment,
-    InputLabel,
-    MenuItem,
-    Select
-} from "@material-ui/core";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, InputAdornment} from "@material-ui/core";
 
 const AddShowDialog = ({open, onClose, load, onAddShow}) => {
     const classes = styles();
@@ -108,26 +97,18 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
                                         autoComplete='off'
                                         className={classes.priceInput}
                                     />
-                                    <FormControl className={classes.dialogFormControl}>
-                                        <InputLabel id="status-label">Status</InputLabel>
-                                        <Select
-                                            margin="dense"
-                                            name="status"
-                                            labelId="status-label"
-                                            label="Status"
-                                            defaultValue={"RUNNING"}
-                                            onChange={event => {
-                                                props.values.status = event.target.value
-                                            }}
-                                        >
-                                            <MenuItem name="status" value={"RUNNING"}>
-                                                Screening Now
-                                            </MenuItem>
-                                            <MenuItem name="status" value={"UPCOMING"}>
-                                                Coming Soon
-                                            </MenuItem>
-                                        </Select>
-                                    </FormControl>
+                                    <FormikSelect
+                                        className={classes.dialogFormControl}
+                                        id="status-label"
+                                        margin="dense"
+                                        name="status"
+                                        label="Status"
+                                        defaultValue={"RUNNING"}
+                                        options={[
+                                            {value: "RUNNING", display: "Screening Now"},
+                                            {value: "UPCOMING", display: "Coming Soon"}
+                                        ]}
+                                    />
                                 </DialogContent>
                                 <DialogActions>
                                     <Button autoFocus onClick={handleCancel} color="primary">
@@ -143,7 +124,8 @@ const AddShowDialog = ({open, onClose, load, onAddShow}) => {
                 }
             </Formik>
         </Dialog>
-    );
+    )
+        ;
 };
 
 AddShowDialog.propTypes = {

@@ -2,8 +2,9 @@ import React from "react";
 import {useField} from "formik";
 import {TextField} from "@material-ui/core";
 import styles from "./styles/FormikTextFieldStyles";
+import PropTypes from "prop-types";
 
-export default (props) => {
+const FormikTextField = (props) => {
     const classes = styles();
     const [field, meta] = useField(props.name);
 
@@ -24,3 +25,10 @@ export default (props) => {
         />
     );
 };
+
+FormikTextField.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
+};
+
+export default FormikTextField;
