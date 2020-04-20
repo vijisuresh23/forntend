@@ -1,5 +1,5 @@
 import {when} from "jest-when";
-import showService from './ShowService'
+import showsService from './showsService'
 import ShowModel from '../models/ShowModel'
 import apiService from "../../../helpers/apiService";
 
@@ -24,7 +24,7 @@ describe('Show Service', () => {
             }];
 
         apiService.get.mockResolvedValue({data: data});
-        const shows = await showService.fetchAll();
+        const shows = await showsService.fetchAll();
 
         expect(shows).toHaveLength(2);
 
@@ -60,7 +60,7 @@ describe('Show Service', () => {
             .calledWith(expect.any(String), payload)
             .mockResolvedValue({data: response});
 
-        const createdShow = await showService.create(payload);
+        const createdShow = await showsService.create(payload);
 
         expect(createdShow).toEqual({
             id: 1,

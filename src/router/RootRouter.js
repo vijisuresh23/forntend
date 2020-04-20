@@ -1,10 +1,10 @@
 // noinspection ES6CheckImport
 import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import React from "react";
-import Shows from "../components/Shows/Shows";
+import Shows from "../components/shows/Shows";
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import BlockIcon from '@material-ui/icons/Block';
-import {Error} from "../components/Common";
+import {Error} from "../components/common";
 
 export default () => {
     return (

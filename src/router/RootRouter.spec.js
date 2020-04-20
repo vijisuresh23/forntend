@@ -1,7 +1,7 @@
 import {shallow} from "enzyme/build";
 import React from "react";
 import RootRouter from './RootRouter'
-import Shows from "../components/Shows/Shows";
+import Shows from "../components/shows/Shows";
 
 describe("Root Router", () => {
     it("Should render root router without crashing", () => {

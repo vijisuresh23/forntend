@@ -1,21 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import AddIcon from "@material-ui/icons/Add";
 import {Button} from "@material-ui/core";
 import PropTypes from "prop-types";
-import styles from './styles/AddShowStyles'
+import styles from './styles/addShowStyles'
 import AddShowDialog from "./AddShowDialog";
+import useAddShowDialog from "./hooks/useAddShowDialog";
 
 const AddShow = (props) => {
     const classes = styles();
-    const [openDialog, setOpenDialog] = useState(false);
 
-    const handleClickOpen = () => {
-        setOpenDialog(true);
-    };
-
-    const handleClose = () => {
-        setOpenDialog(false);
-    };
+    const {openDialog, handleClickOpen, handleClose} = useAddShowDialog();
 
     return (
         <>
@@ -34,7 +28,7 @@ const AddShow = (props) => {
 };
 
 AddShow.propTypes = {
-    load: PropTypes.func.isRequired,
+    loadShow: PropTypes.func.isRequired,
     onAddShow: PropTypes.func.isRequired
 };
 

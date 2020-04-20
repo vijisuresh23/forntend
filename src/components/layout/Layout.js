@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Card, Container} from "@material-ui/core";
-import Header from "../Header/Header";
+import Header from "../header/Header";
 import styles from "./styles/LayoutStyles";
 import RootRouter from "../../router/RootRouter";
 

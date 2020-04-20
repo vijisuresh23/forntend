@@ -4,8 +4,8 @@ import {Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography} from "
 import Divider from "@material-ui/core/Divider";
 import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
 import {CURRENCY_SYMBOL} from "../../Constants";
-import styles from "./styles/ShowsSectionStyles"
-import {EmptyShows} from "../Common";
+import styles from "./styles/showsSectionStyles"
+import {EmptyShows} from "../common";
 
 const ShowsSection = ({name, shows, emptyMessage}) => {
     const classes = styles();

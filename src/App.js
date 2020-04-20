@@ -1,6 +1,6 @@
 import React from 'react';
 import {CssBaseline, ThemeProvider} from '@material-ui/core';
-import Layout from "./components/Layout/Layout";
+import Layout from "./components/layout/Layout";
 import Theme from './Theme';
 
 export default () => {
