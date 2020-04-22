@@ -1,6 +1,5 @@
 import {when} from "jest-when";
 import showsService from './showsService'
-import ShowModel from '../models/ShowModel'
 import apiService from "../../../helpers/apiService";
 
 jest.mock('../../../helpers/apiService');
@@ -28,19 +27,19 @@ describe('Show Service', () => {
 
         expect(shows).toHaveLength(2);
 
-        expect(shows).toEqual([new ShowModel({
+        expect(shows).toEqual([{
             id: 1,
             name: "n1",
             description: "d1",
             price: 1,
             status: "RUNNING"
-        }), new ShowModel({
+        }, {
             id: 2,
             name: "n2",
             description: "d2",
             price: 4,
             status: "RUNNING"
-        })]);
+        }]);
     });
 
     it('should create a show', async () => {
