@@ -31,8 +31,8 @@ describe("Basic rendering", () => {
         });
 
         const addShowDialogComponent = shallow(<AddShowDialog onAddShow={testHandleAddShow} loadShow={testLoadShow}
-                                                     onClose={testHandleClose}
-                                                     open={testOpen}/>);
+                                                              onClose={testHandleClose}
+                                                              open={testOpen}/>);
 
         const dialogComponent = addShowDialogComponent.find(Dialog);
         const formikComponent = addShowDialogComponent.find(Formik);

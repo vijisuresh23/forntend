@@ -33,7 +33,8 @@ describe("Basic rendering", () => {
 
     it("Should render a formik text field correctly with errors", () => {
         when(useField).calledWith("test field").mockReturnValue([field, meta]);
-        const formikTextFieldComponent = shallow(<FormikTextField testProp="test prop value" name="test field"/>);
+        const formikTextFieldComponent = shallow(<FormikTextField testProp="test prop value" name="test field"
+                                                                  label="test label"/>);
         basicAssertions(formikTextFieldComponent);
         expect(formikTextFieldComponent.prop('error')).toBe(true);
         expect(formikTextFieldComponent.prop('helperText')).toBe("test error");
@@ -43,7 +44,8 @@ describe("Basic rendering", () => {
         meta.touched = false;
         meta.error = 'error text';
         when(useField).calledWith("test field").mockReturnValue([field, meta]);
-        const formikTextFieldComponent = shallow(<FormikTextField testProp="test prop value" name="test field"/>);
+        const formikTextFieldComponent = shallow(<FormikTextField testProp="test prop value" name="test field"
+                                                                  label="test label"/>);
 
         basicAssertions(formikTextFieldComponent);
         expect(formikTextFieldComponent.prop('error')).toBe(false);

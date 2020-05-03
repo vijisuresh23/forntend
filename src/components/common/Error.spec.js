@@ -8,7 +8,7 @@ describe("Basic rendering", () => {
         const testErrorMessage = "Test Error";
         const TestErrorIcon = () => <span/>;
 
-        const errorComponent = shallow(<Error ErrorIcon={TestErrorIcon} errorMessage={testErrorMessage}/>);
+        const errorComponent = shallow(<Error errorIcon={TestErrorIcon} errorMessage={testErrorMessage}/>);
         const testErrorIconComponent = errorComponent.find(TestErrorIcon);
         const typographyComponent = errorComponent.find(Typography);
 

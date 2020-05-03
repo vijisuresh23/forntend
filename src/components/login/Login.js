@@ -1,0 +1,73 @@
+// noinspection ES6CheckImport
+import {Redirect} from "react-router-dom";
+import React from "react";
+import {Form, Formik} from "formik";
+import {FormikTextField} from "../formik";
+import {Button} from "@material-ui/core";
+import styles from "./styles/loginStyles"
+import PropTypes from "prop-types";
+import useLogin from "./hooks/useLogin";
+import {formSchema, initialValues} from "./services/loginFormService";
+
+const Login = ({location, isAuthenticated, onLogin}) => {
+    const classes = styles();
+    const referrer = location.state ? location.state.referrer : "/";
+    const {errorMessage, handleLogin} = useLogin(onLogin);
+
+    return (
+        isAuthenticated
+            ? (<Redirect to={referrer}/>)
+            : (
+                <div className={classes.loginContainer}>
+                    <Formik initialValues={initialValues}
+                            onSubmit={handleLogin}
+                            validationSchema={formSchema}>
+                        {
+                            (props) => {
+                                const {
+                                    isValid,
+                                } = props;
+                                return (
+                                    <Form className={classes.loginForm}>
+                                        <FormikTextField
+                                            required
+                                            margin="dense"
+                                            name="username"
+                                            label="Username"
+                                        />
+                                        <FormikTextField
+                                            required
+                                            type="password"
+                                            margin="dense"
+                                            name="password"
+                                            label="Password"
+                                        />
+                                        {
+                                            errorMessage()
+                                        }
+                                        <Button
+                                            variant="contained"
+                                            type="submit"
+                                            disabled={!isValid}
+                                            color="primary"
+                                            className={classes.loginButton}
+                                        >
+                                            Login
+                                        </Button>
+                                    </Form>
+                                );
+                            }
+                        }
+                    </Formik>
+                </div>
+            )
+    );
+}
+
+Login.propTypes = {
+    location: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    onLogin: PropTypes.func.isRequired
+};
+
+export default Login;

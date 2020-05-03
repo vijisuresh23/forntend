@@ -6,7 +6,8 @@ export default makeStyles((theme) =>
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            paddingBottom: '25px'
         },
         errorIcon: {
             color: theme.palette.error.main,

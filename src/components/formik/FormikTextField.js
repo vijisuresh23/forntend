@@ -1,7 +1,7 @@
 import React from "react";
 import {useField} from "formik";
 import {TextField} from "@material-ui/core";
-import styles from "./styles/FormikTextFieldStyles";
+import styles from "./styles/formikTextFieldStyles";
 import PropTypes from "prop-types";
 
 const FormikTextField = (props) => {

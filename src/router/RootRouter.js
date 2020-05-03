@@ -5,21 +5,36 @@ import Shows from "../components/shows/Shows";
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import BlockIcon from '@material-ui/icons/Block';
 import {Error} from "../components/common";
+import {Login, ProtectedRoute} from "../components/login";
+import PropTypes from "prop-types";
 
-export default () => {
+const RootRouter = ({isAuthenticated, onLogin}) => {
     return (
         <Router>
             <Switch>
                 <Redirect path="/" exact to="/shows"/>
-                <Route exact path="/shows" component={Shows}/>
+                <ProtectedRoute exact path="/shows" component={Shows} isAuthenticated={isAuthenticated}/>
+
+                <Route exact path="/login"
+                       component={(props) => <Login isAuthenticated={isAuthenticated} onLogin={onLogin} {...props}/>}/>
+
                 <Route exact path="/error" component={
-                    () => <Error ErrorIcon={ErrorOutlineIcon} errorMessage={"Oops..Something went wrong"}/>
+                    () => <Error errorIcon={ErrorOutlineIcon} errorMessage={"Oops..Something went wrong"}/>
                 }
                 />
+
                 <Route component={
-                    () => <Error ErrorIcon={BlockIcon} errorMessage={"Not Found"}/>
+                    () => <Error errorIcon={BlockIcon} errorMessage={"Not Found"}/>
                 }/>
+
             </Switch>
         </Router>
     );
 };
+
+RootRouter.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    onLogin: PropTypes.func.isRequired
+};
+
+export default RootRouter;

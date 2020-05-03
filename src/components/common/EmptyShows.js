@@ -1,7 +1,7 @@
 import React from "react";
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import {Typography} from "@material-ui/core";
-import styles from "./styles/EmptyShowStyles";
+import styles from "./styles/emptyShowStyles";
 import PropTypes from "prop-types";
 
 const EmptyShows = ({emptyShowsMessage}) => {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {urls} from "../config/env-config";
+import {authHeader} from "./authService";
 
 const promiseWithErrorHandling = (promise) => {
     return promise.catch(err => {
@@ -14,10 +15,10 @@ const promiseWithErrorHandling = (promise) => {
 
 export default {
     post: async (path, payload) => {
-        return promiseWithErrorHandling(axios.post(`${urls.service}/${path}`, payload));
+        return promiseWithErrorHandling(axios.post(`${urls.service}/${path}`, payload, authHeader()));
     },
 
     get: async (path) => {
-        return promiseWithErrorHandling(axios.get(`${urls.service}/${path}`));
+        return promiseWithErrorHandling(axios.get(`${urls.service}/${path}`, authHeader()));
     }
 };

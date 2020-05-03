@@ -43,7 +43,7 @@ describe("Basic rendering", () => {
             open: testOpenDialog,
             onClose: testHandleClose,
             loadShow: testLoadShow,
-            onAddShow:  testHandleAddShow,
+            onAddShow: testHandleAddShow,
             testProp: testProp
         });
     });

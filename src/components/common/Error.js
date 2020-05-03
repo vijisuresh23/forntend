@@ -1,9 +1,9 @@
 import React from "react";
 import {Typography} from "@material-ui/core";
-import styles from "./styles/ErrorStyles"
+import styles from "./styles/errorStyles"
 import PropTypes from "prop-types";
 
-const Error = ({ErrorIcon, errorMessage}) => {
+const Error = ({errorIcon: ErrorIcon, errorMessage}) => {
     const classes = styles();
 
     return (
@@ -17,7 +17,7 @@ const Error = ({ErrorIcon, errorMessage}) => {
 };
 
 Error.propTypes = {
-    ErrorIcon: PropTypes.elementType.isRequired,
+    errorIcon: PropTypes.elementType.isRequired,
     errorMessage: PropTypes.string.isRequired,
 };
 

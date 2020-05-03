@@ -7,7 +7,13 @@ export default makeStyles((theme) => ({
             justifyContent: "flex-start",
             textDecoration: 'none'
         },
-        headerIcon: {
+        logoutLink: {
+            display: 'flex',
+            justifyContent: "flex-start",
+            alignItems: "center",
+            cursor: "pointer"
+        },
+        cinemaLogoIcon: {
             fontSize: '2.25em'
         },
         headerLogo: {
@@ -15,7 +21,7 @@ export default makeStyles((theme) => ({
         },
         toolbar: {
             display: 'flex',
-            justifyContent: "flex-start",
+            justifyContent: "space-between",
             padding: "0 4em"
         },
         cartButton: {
