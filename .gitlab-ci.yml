@@ -19,6 +19,8 @@ test:
     - yarn install
     - yarn test
     - yarn build
+  only:
+    - master
 
 package:
   image: docker:latest
@@ -33,3 +35,5 @@ package:
     - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
     - docker build -t $REACT_IMAGE . --no-cache
     - docker push $REACT_IMAGE
+  only:
+    - master
