@@ -18,6 +18,7 @@ module.exports = {
         "portMappings": [
           {
             "containerPort": 80,
+            "hostPort": process.env.UI_PORT,
             "protocol": "tcp"
           }
         ],
