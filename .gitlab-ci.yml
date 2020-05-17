@@ -40,7 +40,7 @@ package:
     - master
 
 deploy-integration:
-  image: registry.gitlab.com/gitlab-org/cloud-deploy
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-ecs:latest
   stage: deploy-integration
   environment:
     name: integration
