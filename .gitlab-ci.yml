@@ -45,7 +45,7 @@ deploy-integration:
   environment:
     name: integration
   script:
-    - echo deploy
+    - cd deploy
     - ./deploy.sh
   only:
     - master
