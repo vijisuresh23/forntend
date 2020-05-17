@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+apt-get install nodejs -y
+
 export CLUSTER_NAME="team$TEAM_ID"
 export CLUSTER_CONFIG_NAME="team$TEAM_ID-config"
 export CLUSTER_PROFILE_NAME="team$TEAM_ID-profile"
