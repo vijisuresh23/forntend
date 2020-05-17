@@ -21,7 +21,8 @@ node ecs.js taskDefinitionTemplate
 echo "Registering task definition"
 aws ecs register-task-definition --cli-input-json file://task-definition.json
 
-aws ecs list-services --cluster "booking-web-$CI_ENVIRONMENT_SLUG"
+aws ecs list-services --cluster "team$TEAM_ID" | grep "booking-web-$TEAM_ID"
+
 if [ $? != 0 ]; then
   echo "Registering service definition"
   aws ecs create-service --cli-input-json file://service.json
