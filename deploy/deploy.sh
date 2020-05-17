@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -v
 
 apt-get install nodejs -y
 
@@ -33,3 +34,5 @@ fi
 echo "running clean up"
 rm -rf service.json
 rm -rf task-definition.json
+
+set +v
