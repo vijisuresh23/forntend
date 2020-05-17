@@ -6,6 +6,7 @@ variables:
 stages:
   - test
   - package
+  - deploy-integration
 
 test:
   stage: test
@@ -35,5 +36,16 @@ package:
     - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
     - docker build -t $REACT_IMAGE . --no-cache
     - docker push $REACT_IMAGE
+  only:
+    - master
+
+deploy-integration:
+  image: registry.gitlab.com/gitlab-org/cloud-deploy
+  stage: deploy-integration
+  environment:
+    name: integration
+  script:
+    - echo deploy
+    - ./deploy.sh
   only:
     - master
