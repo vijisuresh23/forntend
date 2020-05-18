@@ -8,6 +8,9 @@ stages:
   - package
   - deploy-integration
   - promote-staging
+  - deploy-staging
+  - promote-prod
+  - deploy-prod
 
 test:
   stage: test
@@ -63,5 +66,42 @@ promote-staging:
     name: staging
   script:
     - ./promote.sh $PROMOTE_FROM
+  only:
+    - master
+
+deploy-staging:
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-ecs:latest
+  stage: deploy-staging
+  environment:
+    name: staging
+  script:
+    - cd deploy
+    - ./deploy.sh
+  only:
+    - master
+
+promote-prod:
+  image: docker:latest
+  stage: promote-prod
+  when: manual
+  variables:
+    PROMOTE_FROM: staging
+  services:
+    - docker:dind
+  environment:
+    name: staging
+  script:
+    - ./promote.sh $PROMOTE_FROM
+  only:
+    - master
+
+deploy-prod:
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-ecs:latest
+  stage: deploy-prod
+  environment:
+    name: prod
+  script:
+    - cd deploy
+    - ./deploy.sh
   only:
     - master
