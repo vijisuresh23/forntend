@@ -90,7 +90,7 @@ promote-prod:
   services:
     - docker:dind
   environment:
-    name: staging
+    name: prod
   script:
     - ./promote.sh $PROMOTE_FROM
   only:
