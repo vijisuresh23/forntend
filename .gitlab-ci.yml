@@ -38,7 +38,7 @@ package:
     - export REACT_IMAGE=$BOOKING_WEB_IMAGE_NAME:$CI_COMMIT_SHORT_SHA-$CI_ENVIRONMENT_SLUG
     - echo "image info - $REACT_IMAGE"
     - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
-    - docker build -t $REACT_IMAGE . --no-cache
+    - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG -t $REACT_IMAGE .
     - docker push $REACT_IMAGE
   only:
     - master
