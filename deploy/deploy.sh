@@ -29,7 +29,7 @@ if [ -z "$status" ]; then
   echo "Registering service definition"
   aws ecs create-service --cli-input-json file://service.json
 else
-  echo "Service already exists. Updating service..
+  echo "Service already exists. Updating service.."
   aws ecs update-service --force-new-deployment --service "booking-web-$CI_ENVIRONMENT_SLUG" --task-definition "booking-web-$CI_ENVIRONMENT_SLUG" --cluster "team$TEAM_ID"
 fi
 
