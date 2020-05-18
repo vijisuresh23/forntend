@@ -7,7 +7,7 @@ module.exports = {
     "executionRoleArn": "catalystSecretsExecutionRoleCI",
     "containerDefinitions": [
       {
-        "name": "booking-beb",
+        "name": "booking-web",
         "image": process.env.IMAGE,
         "repositoryCredentials": {
           "credentialsParameter": process.env.REGISTRY_SECRET_ARN
