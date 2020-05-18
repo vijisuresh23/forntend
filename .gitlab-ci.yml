@@ -1,12 +1,13 @@
 image: node:latest
 
 variables:
-  REACT_IMAGE_NAME: registry.gitlab.com/tw-catalyst/booking-web/reactapp
+  BOOKING_WEB_IMAGE_NAME: registry.gitlab.com/tw-catalyst/booking-web/reactapp
 
 stages:
   - test
   - package
   - deploy-integration
+  - promote-staging
 
 test:
   stage: test
@@ -31,7 +32,7 @@ package:
   environment:
     name: integration
   script:
-    - export REACT_IMAGE=$REACT_IMAGE_NAME:$CI_COMMIT_SHORT_SHA-$CI_ENVIRONMENT_SLUG
+    - export REACT_IMAGE=BOOKING_WEB_IMAGE_NAME:$CI_COMMIT_SHORT_SHA-$CI_ENVIRONMENT_SLUG
     - echo "image info - $REACT_IMAGE"
     - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
     - docker build -t $REACT_IMAGE . --no-cache
@@ -47,5 +48,20 @@ deploy-integration:
   script:
     - cd deploy
     - ./deploy.sh
+  only:
+    - master
+
+promote-staging:
+  image: docker:latest
+  stage: promote-staging
+  when: manual
+  variables:
+    PROMOTE_FROM: integration
+  services:
+    - docker:dind
+  environment:
+    name: staging
+  script:
+    - ./promote.sh $PROMOTE_FROM
   only:
     - master
