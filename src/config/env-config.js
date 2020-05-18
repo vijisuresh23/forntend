@@ -1,30 +1,42 @@
 const API_HOST_LOCAL = "http://localhost:8080";
 const API_HOST_CI = "https://123.45.67.89";
-const API_HOST_STAGING = "https://shows.staging/service";
+const API_HOST_INTEGRATION = "http://localhost:8080";
+const API_HOST_STAGING = "http://localhost:8081";
+const API_HOST_PROD = "http://localhost:8082";
 
 const UI_HOST_LOCAL = "https://localhost:3000";
-const UI_HOST_CI = "https://shows.shows.ci";
-const UI_HOST_STAGING = "https://shows.staging";
+const UI_HOST_CI = "https://localhost:3000";
+const UI_HOST_INTEGRATION = "https://localhost:3000";
+const UI_HOST_STAGING = "https://localhost:3000";
+const UI_HOST_PROD = "https://localhost:3000";
 
-const ENV_LOCAL = "ENV_LOCAL";
+const ENV_LOCAL = "local";
 
 const HOSTS = {
-    ENV_LOCAL: {
+    local: {
         "API": API_HOST_LOCAL,
         "UI": UI_HOST_LOCAL
     },
-    ENV_CI: {
+    ci: {
         "API": API_HOST_CI,
         "UI": UI_HOST_CI
     },
-    ENV_STAGING: {
+    integration: {
+        "API": API_HOST_INTEGRATION,
+        "UI": UI_HOST_INTEGRATION
+    },
+    staging: {
         "API": API_HOST_STAGING,
         "UI": UI_HOST_STAGING
     },
+    prod: {
+        "API": API_HOST_PROD,
+        "UI": UI_HOST_PROD
+    }
 };
 
 export const serviceUrl = () => {
-    const environment = process.env.ENVIRONMENT || ENV_LOCAL;
+    const environment = process.env.REACT_APP_ENVIRONMENT || ENV_LOCAL;
     return HOSTS[environment].API
 };
 
