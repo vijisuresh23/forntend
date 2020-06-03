@@ -1,8 +1,7 @@
 import React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 import Login from "./Login";
 // noinspection ES6CheckImport
-import {Redirect} from "react-router-dom";
 import useLogin from "./hooks/useLogin";
 import {when} from "jest-when";
 import {Formik} from "formik";
@@ -24,6 +23,7 @@ describe("Basic Rendering", () => {
     const testOnLogin = jest.fn();
     const testHandleLogin = jest.fn();
     const testReferrer = "/testReferrer";
+    const testFrom = "testFrom";
     const TestErrorComponent = () => <div/>;
 
     beforeEach(() => {
@@ -33,12 +33,13 @@ describe("Basic Rendering", () => {
         });
     });
 
-    it("should redirect when authenticated", () => {
-        const loginComponent = shallow(<Login isAuthenticated={true} onLogin={testOnLogin}
-                                              location={{state: {referrer: testReferrer}}}/>);
+    it("should go to from url when authenticated", () => {
+        const testHistory = {replace: jest.fn()};
+        mount(<Login isAuthenticated={true} onLogin={testOnLogin}
+                     location={{state: {from: testFrom}}} history={testHistory}/>);
 
-        const redirectComponent = loginComponent.find(Redirect);
-        expect(redirectComponent.prop("to")).toBe(testReferrer);
+        expect(testHistory.replace).toBeCalledTimes(1);
+        expect(testHistory.replace).toHaveBeenCalledWith(testFrom);
     });
 
     it("should render login form when not authenticated", () => {

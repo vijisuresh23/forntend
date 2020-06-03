@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Card, Container} from "@material-ui/core";
 import Header from "../header/Header";
 import styles from "./styles/layoutStyles";
-import RootRouter from "../../router/RootRouter";
+import RootRouter from "../router/RootRouter";
 import useAuth from "./hooks/useAuth";
 
 export default () => {

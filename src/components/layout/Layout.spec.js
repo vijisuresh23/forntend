@@ -2,7 +2,7 @@ import React from "react";
 import {shallow} from "enzyme";
 import Layout from "./Layout";
 import Header from "../header/Header";
-import RootRouter from "../../router/RootRouter";
+import RootRouter from "../router/RootRouter";
 import useAuth from "./hooks/useAuth";
 
 const testHandleLogin = jest.fn();

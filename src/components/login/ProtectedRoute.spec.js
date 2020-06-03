@@ -14,7 +14,7 @@ describe("Basic Rendering", () => {
         );
 
         const routeComponent = protectedRouteComponent.find(Route);
-        const renderedComponent = routeComponent.prop("render")({testProp: "testVal"});
+        const renderedComponent = routeComponent.prop("component")({testProp: "testVal"});
 
         expect(routeComponent.prop("path")).toBe("/testPath")
         expect(routeComponent.prop("testProp")).toBe("testValue")
@@ -27,7 +27,7 @@ describe("Basic Rendering", () => {
         );
 
         const routeComponent = protectedRouteComponent.find(Route);
-        const renderedComponent = routeComponent.prop("render")({unusedProp: "unusedValue"});
+        const renderedComponent = routeComponent.prop("component")({location: "testLocation"});
 
         expect(routeComponent.prop("path")).toBe("/testPath")
         expect(routeComponent.prop("testProp")).toBe("testValue")
@@ -35,7 +35,7 @@ describe("Basic Rendering", () => {
             to={{
                 pathname: "/login",
                 state: {
-                    referrer: "/testPath"
+                    from: "testLocation"
                 }
             }}
         />);

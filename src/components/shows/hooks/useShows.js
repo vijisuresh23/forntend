@@ -1,30 +1,20 @@
 import {useEffect, useState} from 'react';
 import showsService from "../services/showsService";
+import {QUERY_DATE_FORMAT} from "../../../Constants";
 
-export default (setShowsLoading) => {
+const useShows = (setShowsLoading, showDate) => {
     const [shows, setShows] = useState([]);
 
     useEffect(() => {
-        showsService.fetchAll()
+        const formattedDate = showDate.format(QUERY_DATE_FORMAT);
+        showsService.fetchAll(formattedDate)
             .then(shows => {
                 setShowsLoading(false);
                 setShows(shows);
             });
-    }, [setShowsLoading]);
+    }, [setShowsLoading, showDate]);
 
-    const handleAddShow = (showData) => {
-        setShows(shows.concat(showData));
-    };
-
-    const runningShows = shows
-        .filter(show => show.status === "RUNNING");
-
-    const upcomingShows = shows
-        .filter(show => show.status === "UPCOMING");
-
-    return {
-        handleAddShow: handleAddShow,
-        runningShows: runningShows,
-        upcomingShows: upcomingShows
-    };
+    return shows;
 }
+
+export default useShows;

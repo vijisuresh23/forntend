@@ -3,9 +3,10 @@ import {Redirect, Route} from "react-router-dom";
 import React from "react";
 import PropTypes from "prop-types";
 
-const ProtectedRoute = ({component: Component, path, isAuthenticated, ...rest}) => {
+const ProtectedRoute = ({component: Component, isAuthenticated, ...rest}) => {
 
     const renderedComponent = (props) => {
+        const {location} = props;
         return isAuthenticated
             ? (<Component {...props}/>)
             : (
@@ -13,7 +14,7 @@ const ProtectedRoute = ({component: Component, path, isAuthenticated, ...rest}) 
                     to={{
                         pathname: "/login",
                         state: {
-                            referrer: path
+                            from: location
                         }
                     }}
                 />
@@ -22,15 +23,15 @@ const ProtectedRoute = ({component: Component, path, isAuthenticated, ...rest}) 
 
     return (
         <Route
-            path={path}
             {...rest}
-            render={renderedComponent}
+            component={renderedComponent}
         />
     );
 }
 
 ProtectedRoute.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
+    component: PropTypes.elementType.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default ProtectedRoute;
