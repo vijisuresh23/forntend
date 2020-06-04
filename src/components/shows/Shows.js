@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {
     Avatar,
     Backdrop,
@@ -15,39 +15,15 @@ import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import useShows from "./hooks/useShows";
-import queryString from "query-string";
-import moment from "moment";
-import {HEADER_DATE_FORMAT, INR_SYMBOL, QUERY_DATE_FORMAT} from "../../Constants"
+import {HEADER_DATE_FORMAT, INR_SYMBOL} from "../../Constants"
+import {dateFromSearchString, nextDateLocation, previousDateLocation} from "./services/dateService";
 
 export default ({location, history}) => {
     const classes = styles();
 
-    const searchString = location.search;
-    let showDate;
-    if (searchString && ("date" in queryString.parse(searchString))) {
-        showDate = moment(queryString.parse(searchString).date);
-    } else {
-        showDate = moment();
-    }
+    const showDate = dateFromSearchString(location.search);
 
-    const [showsLoading, setShowsLoading] = useState(true);
-    const shows = useShows(setShowsLoading, showDate);
-
-    const handleNextDay = () => {
-        const nextDateFormatted = showDate.add(1, 'days').format(QUERY_DATE_FORMAT);
-        history.push({
-            ...location,
-            search: `?date=${nextDateFormatted}`
-        });
-    };
-
-    const handlePreviousDay = () => {
-        const previousDateFormatted = showDate.subtract(1, 'days').format(QUERY_DATE_FORMAT);
-        history.push({
-            ...location,
-            search: `?date=${previousDateFormatted}`
-        });
-    };
+    const {shows, showsLoading} = useShows(showDate);
 
     return (
         <>
@@ -86,7 +62,9 @@ export default ({location, history}) => {
             </List>
             <div className={classes.buttons}>
                 <Button
-                    onClick={handlePreviousDay}
+                    onClick={() => {
+                        history.push(previousDateLocation(location, showDate));
+                    }}
                     startIcon={<ArrowBackIcon/>}
                     color="primary"
                     className={classes.navigationButton}
@@ -94,7 +72,9 @@ export default ({location, history}) => {
                     Previous Day
                 </Button>
                 <Button
-                    onClick={handleNextDay}
+                    onClick={() => {
+                        history.push(nextDateLocation(location, showDate));
+                    }}
                     endIcon={<ArrowForwardIcon/>}
                     color="primary"
                     className={classes.navigationButton}

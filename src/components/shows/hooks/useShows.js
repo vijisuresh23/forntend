@@ -2,7 +2,8 @@ import {useEffect, useState} from 'react';
 import showsService from "../services/showsService";
 import {QUERY_DATE_FORMAT} from "../../../Constants";
 
-const useShows = (setShowsLoading, showDate) => {
+const useShows = (showDate) => {
+    const [showsLoading, setShowsLoading] = useState(true);
     const [shows, setShows] = useState([]);
 
     useEffect(() => {
@@ -12,9 +13,12 @@ const useShows = (setShowsLoading, showDate) => {
                 setShowsLoading(false);
                 setShows(shows);
             });
-    }, [setShowsLoading, showDate]);
+    }, [showDate]);
 
-    return shows;
+    return {
+        shows: shows,
+        showsLoading: showsLoading
+    };
 }
 
 export default useShows;
