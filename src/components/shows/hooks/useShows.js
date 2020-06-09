@@ -13,7 +13,8 @@ const useShows = (showDate) => {
                 setShowsLoading(false);
                 setShows(shows);
             });
-    }, [showDate]);
+        // eslint-disable-next-line
+    }, []);
 
     return {
         shows: shows,

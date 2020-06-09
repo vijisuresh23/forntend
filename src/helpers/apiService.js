@@ -4,7 +4,7 @@ import {authHeader} from "./authService";
 
 const promiseWithErrorHandling = (promise) => {
     return promise.catch(err => {
-        if (err.response.status === 500) {
+        if (err.response && err.response.status === 500) {
             // noinspection JSCheckFunctionSignatures
             window.location.assign("/error");
         } else {
