@@ -3,7 +3,14 @@ import {makeStyles} from "@material-ui/core/styles";
 export default makeStyles((theme) =>
     ({
         cardHeader: {
-            padding: "15px 0 0 15px"
+            display: "flex",
+            justifyContent: "space-between"
+        },
+        showsHeader: {
+            padding: "15px 0 0 15px",
+            display: "flex",
+            fontWeight: "bold",
+            alignSelf: "center"
         },
         backdrop: {
             zIndex: theme.zIndex.drawer + 1,

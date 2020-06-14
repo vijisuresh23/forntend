@@ -17,19 +17,25 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import useShows from "./hooks/useShows";
 import {HEADER_DATE_FORMAT, INR_SYMBOL} from "../../Constants"
 import {dateFromSearchString, nextDateLocation, previousDateLocation} from "./services/dateService";
+import ShowsRevenue from "./ShowsRevenue";
+import useShowsRevenue from "./hooks/useShowsRevenue";
 
 export default ({location, history}) => {
     const classes = styles();
 
-    const showDate = dateFromSearchString(location.search);
+    const showsDate = dateFromSearchString(location.search);
 
-    const {shows, showsLoading} = useShows(showDate);
+    const {shows, showsLoading} = useShows(showsDate);
+    const {showsRevenue, showsRevenueLoading} = useShowsRevenue(showsDate);
 
     return (
         <>
-            <Typography variant="h4" className={classes.cardHeader}>
-                Shows ({showDate.format(HEADER_DATE_FORMAT)})
-            </Typography>
+            <div className={classes.cardHeader}>
+                <Typography variant="h4" className={classes.showsHeader}>
+                    Shows ({showsDate.format(HEADER_DATE_FORMAT)})
+                </Typography>
+                <ShowsRevenue showsRevenue={showsRevenue} showsRevenueLoading={showsRevenueLoading}/>
+            </div>
             <List className={classes.listRoot}>
                 {
                     shows.map(show => (
@@ -63,7 +69,7 @@ export default ({location, history}) => {
             <div className={classes.buttons}>
                 <Button
                     onClick={() => {
-                        history.push(previousDateLocation(location, showDate));
+                        history.push(previousDateLocation(location, showsDate));
                     }}
                     startIcon={<ArrowBackIcon/>}
                     color="primary"
@@ -73,7 +79,7 @@ export default ({location, history}) => {
                 </Button>
                 <Button
                     onClick={() => {
-                        history.push(nextDateLocation(location, showDate));
+                        history.push(nextDateLocation(location, showsDate));
                     }}
                     endIcon={<ArrowForwardIcon/>}
                     color="primary"

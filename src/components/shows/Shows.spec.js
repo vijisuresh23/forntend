@@ -4,6 +4,9 @@ import Shows from "./Shows";
 import {when} from "jest-when";
 import {dateFromSearchString, nextDateLocation, previousDateLocation} from "./services/dateService";
 import useShows from "./hooks/useShows";
+import useShowsRevenue from "./hooks/useShowsRevenue";
+import {shallow} from "enzyme";
+import ShowsRevenue from "./ShowsRevenue";
 
 jest.mock("./services/dateService", () => ({
     dateFromSearchString: jest.fn(),
@@ -12,6 +15,11 @@ jest.mock("./services/dateService", () => ({
 }));
 
 jest.mock("./hooks/useShows", () => ({
+    __esModule: true,
+    default: jest.fn()
+}));
+
+jest.mock("./hooks/useShowsRevenue", () => ({
     __esModule: true,
     default: jest.fn()
 }));
@@ -53,7 +61,11 @@ describe("Basic rendering and functionality", () => {
                     slot: {startTime: "start time 2"}
                 }
             ]
-        })
+        });
+        when(useShowsRevenue).calledWith(testShowDate).mockReturnValue({
+            showsRevenue: 549.99,
+            showsRevenueLoading: false
+        });
     });
 
     it("Should display the show info", () => {
@@ -82,5 +94,14 @@ describe("Basic rendering and functionality", () => {
         expect(testHistory.push).toBeCalledTimes(2);
         expect(testHistory.push).toHaveBeenNthCalledWith(1, "Previous Location");
         expect(testHistory.push).toHaveBeenNthCalledWith(2, "Next Location");
+    });
+
+    it("Should display revenue when rendered", () => {
+        const shows = shallow(<Shows history={testHistory} location={testLocation}/>);
+
+        const showsRevenue = shows.find(ShowsRevenue);
+
+        expect(showsRevenue.prop("showsRevenue")).toBe(549.99);
+        expect(showsRevenue.prop("showsRevenueLoading")).toBe(false);
     });
 });
