@@ -4,6 +4,7 @@ import Shows from "./Shows";
 import {when} from "jest-when";
 import {dateFromSearchString, nextDateLocation, previousDateLocation} from "./services/dateService";
 import useShows from "./hooks/useShows";
+import SeatSelection from "./SeatSelection";
 import useShowsRevenue from "./hooks/useShowsRevenue";
 import {shallow} from "enzyme";
 import ShowsRevenue from "./ShowsRevenue";
@@ -24,6 +25,10 @@ jest.mock("./hooks/useShowsRevenue", () => ({
     default: jest.fn()
 }));
 
+jest.mock("./SeatSelection", () => {
+    return () => <div>SeatSelection</div>;
+});
+
 describe("Basic rendering and functionality", () => {
     let testHistory;
     let testLocation;
@@ -40,7 +45,7 @@ describe("Basic rendering and functionality", () => {
 
         testShowDate = {
             format: jest.fn()
-        }
+        };
 
         when(dateFromSearchString).calledWith("testSearch").mockReturnValue(testShowDate);
         when(nextDateLocation).calledWith(testLocation, testShowDate).mockReturnValue("Next Location");
@@ -94,6 +99,16 @@ describe("Basic rendering and functionality", () => {
         expect(testHistory.push).toBeCalledTimes(2);
         expect(testHistory.push).toHaveBeenNthCalledWith(1, "Previous Location");
         expect(testHistory.push).toHaveBeenNthCalledWith(2, "Next Location");
+    });
+
+    it("Should display seat selection when a show is selected", () => {
+        const {getByText, queryByText} = render(<Shows history={testHistory} location={testLocation} />);
+
+        expect(queryByText("SeatSelection")).toBeNull();
+
+        fireEvent.click(getByText("Movie 1"));
+
+        expect(getByText("SeatSelection")).toBeTruthy();
     });
 
     it("Should display revenue when rendered", () => {

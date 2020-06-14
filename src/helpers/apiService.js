@@ -20,5 +20,8 @@ export default {
 
     get: async (path) => {
         return promiseWithErrorHandling(axios.get(`${urls.service}/${path}`, authHeader()));
+    },
+    postWithoutErrorHandling: async (path, payload) => {
+        return axios.post(`${urls.service}/${path}`, payload, authHeader())
     }
 };
