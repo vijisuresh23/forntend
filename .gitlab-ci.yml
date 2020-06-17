@@ -65,6 +65,7 @@ promote-staging:
   environment:
     name: staging
   script:
+    - cd deploy
     - ./promote.sh $PROMOTE_FROM
   only:
     - master
@@ -92,6 +93,7 @@ promote-prod:
   environment:
     name: prod
   script:
+    - cd deploy
     - ./promote.sh $PROMOTE_FROM
   only:
     - master
