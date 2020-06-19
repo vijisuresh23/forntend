@@ -8,11 +8,10 @@ const useShows = (showsDate) => {
 
     useEffect(() => {
         const formattedDate = showsDate.format(QUERY_DATE_FORMAT);
-        showsService.fetchAll(formattedDate)
-            .then(shows => {
-                setShowsLoading(false);
-                setShows(shows);
-            });
+        showsService.fetchAll(formattedDate).then(shows => {
+            setShowsLoading(false);
+            setShows(shows);
+        });
         // eslint-disable-next-line
     }, []);
 

@@ -62,12 +62,12 @@ describe('Api service', () => {
     });
 
     it('Should return promise without handling error for post call', async () => {
-      axios.post.mockRejectedValue(internalServerErrorResponse);
+        axios.post.mockRejectedValue(internalServerErrorResponse);
 
-      try {
-        await apiService.postWithoutErrorHandling(expect.any(String), expect.any(Object));
-      } catch (error) {
-        expect(window.location.assign).not.toHaveBeenCalled();
-      }
+        try {
+            await apiService.postWithoutErrorHandling(expect.any(String), expect.any(Object));
+        } catch (error) {
+            expect(window.location.assign).not.toHaveBeenCalled();
+        }
     });
 });

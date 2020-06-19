@@ -4,7 +4,7 @@ import Shows from "./Shows";
 import {when} from "jest-when";
 import {dateFromSearchString, nextDateLocation, previousDateLocation} from "./services/dateService";
 import useShows from "./hooks/useShows";
-import SeatSelection from "./SeatSelection";
+import SeatSelectionDialog from "./SeatSelectionDialog";
 import useShowsRevenue from "./hooks/useShowsRevenue";
 import {shallow} from "enzyme";
 import ShowsRevenue from "./ShowsRevenue";
@@ -25,7 +25,7 @@ jest.mock("./hooks/useShowsRevenue", () => ({
     default: jest.fn()
 }));
 
-jest.mock("./SeatSelection", () => {
+jest.mock("./SeatSelectionDialog", () => {
     return () => <div>SeatSelection</div>;
 });
 
@@ -102,9 +102,9 @@ describe("Basic rendering and functionality", () => {
     });
 
     it("Should display seat selection when a show is selected", () => {
-        const {getByText, queryByText} = render(<Shows history={testHistory} location={testLocation} />);
+        const {getByText, queryByText} = render(<Shows history={testHistory} location={testLocation}/>);
 
-        expect(queryByText("SeatSelection")).toBeNull();
+        expect(queryByText("SeatSelectionDialog")).toBeNull();
 
         fireEvent.click(getByText("Movie 1"));
 

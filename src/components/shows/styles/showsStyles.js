@@ -6,6 +6,16 @@ export default makeStyles((theme) =>
             display: "flex",
             justifyContent: "space-between"
         },
+        showContainer: {
+            "& :hover": {
+                backgroundColor: "#f9f8fd",
+            }
+        },
+        localMoviesIcon: {
+            "& :hover": {
+                backgroundColor: "#bdbdbd",
+            }
+        },
         showsHeader: {
             padding: "15px 0 0 15px",
             display: "flex",
@@ -36,11 +46,11 @@ export default makeStyles((theme) =>
             margin: "20px"
         },
         paper: {
-          width: '200',
-          height: '500',
-          backgroundColor: theme.palette.background.paper,
-          boxShadow: theme.shadows[5],
-          padding: theme.spacing(2, 4, 3),
+            width: '200',
+            height: '500',
+            backgroundColor: theme.palette.background.paper,
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
         }
     })
 );
