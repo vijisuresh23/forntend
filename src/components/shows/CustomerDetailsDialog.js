@@ -58,7 +58,7 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
                 </Typography>
                 <Formik validationSchema={formSchema} initialValues={initialValues} onSubmit={bookShow}>
                     {
-                        ({isValid, values}) => {
+                        ({isValid}) => {
                             return (
                                 <Form>
                                     <DialogContent className={classes.dialogContent}>
