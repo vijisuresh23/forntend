@@ -1,9 +1,9 @@
 import React from 'react'
-import { Dialog, Snackbar, DialogContent, Typography } from "@material-ui/core";
+import {Dialog, DialogContent, Typography} from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert/Alert";
 import styles from "./styles/customerDetailsDialogStyles"
 
-const BookingConfirmation = ({ bookingConfirmation, showConfirmation, onClose }) => {
+const BookingConfirmation = ({bookingConfirmation, showConfirmation, onClose}) => {
     const classes = styles();
     const handleClose = () => {
         onClose();
@@ -13,10 +13,10 @@ const BookingConfirmation = ({ bookingConfirmation, showConfirmation, onClose })
         <Dialog open={showConfirmation} onClose={handleClose}>
             <Alert severity="success">
                 Seats booked successfully!
-                </Alert>
+            </Alert>
             <Typography variant="h6" className={classes.dialogHeader}>
                 Booking Confirmation
-        </Typography>
+            </Typography>
             <DialogContent>
                 <Typography variant="body1" display="block" gutterBottom>
                     Booking id : {bookingConfirmation.id}

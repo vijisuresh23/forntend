@@ -1,17 +1,17 @@
-import { Button, Dialog, DialogContent, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import {Button, Dialog, DialogContent, Typography} from "@material-ui/core";
+import React, {useState} from "react";
 import styles from "./styles/customerDetailsDialogStyles"
 import bookingService from "./services/bookingService";
 import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import Alert from "@material-ui/lab/Alert/Alert";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { string, object } from "yup";
-import { Form, Formik } from "formik";
+import {object, string} from "yup";
+import {Form, Formik} from "formik";
 import FormikTextField from "../formik/FormikTextField";
 import BookingConfirmation from "./BookingConfirmation";
 
-const CustomerDetailsDialog = ({ seats, selectedShow, updateShowsRevenue, open, onClose }) => {
+const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, onClose}) => {
     const [success, setSuccess] = useState(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [bookingConfirmation, setBookingConfirmation] = useState({});
@@ -67,14 +67,14 @@ const CustomerDetailsDialog = ({ seats, selectedShow, updateShowsRevenue, open, 
                 </Typography>
                 <Formik validationSchema={formSchema} initialValues={initialValues} onSubmit={bookShow}>
                     {
-                        ({ isValid }) => {
+                        ({isValid}) => {
                             return (
                                 <Form>
                                     <DialogContent className={classes.dialogContent}>
                                         <FormikTextField
                                             required
                                             margin="dense"
-                                            inputProps={{ "data-testid": "name" }}
+                                            inputProps={{"data-testid": "name"}}
                                             name="name"
                                             label="Name"
                                             fullWidth
@@ -84,14 +84,14 @@ const CustomerDetailsDialog = ({ seats, selectedShow, updateShowsRevenue, open, 
                                         <FormikTextField
                                             required
                                             margin="dense"
-                                            inputProps={{ "data-testid": "phoneNumber" }}
+                                            inputProps={{"data-testid": "phoneNumber"}}
                                             name="phoneNumber"
                                             label="Phone Number"
                                             fullWidth
                                             autoComplete='off'
                                         />
                                         <Button type="submit" disabled={!isValid} color="primary" variant="contained"
-                                            className={classes.bookShowButton} data-testid="bookButton">
+                                                className={classes.bookShowButton} data-testid="bookButton">
                                             Book
                                         </Button>
                                     </DialogContent>
@@ -102,7 +102,8 @@ const CustomerDetailsDialog = ({ seats, selectedShow, updateShowsRevenue, open, 
                 </Formik>
             </Dialog>
 
-           <BookingConfirmation bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation} onClose={closeConfirmation}></BookingConfirmation>
+            <BookingConfirmation bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation}
+                                 onClose={closeConfirmation}/>
 
             <Snackbar open={success === false} autoHideDuration={2000} onClose={() => setSuccess(null)}>
                 <Alert severity="error">

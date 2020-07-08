@@ -1,4 +1,4 @@
-import {Avatar, Button, Typography, Dialog} from "@material-ui/core";
+import {Avatar, Button, Dialog, Typography} from "@material-ui/core";
 import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
 import TextField from "@material-ui/core/TextField";
 import React, {useState} from "react";

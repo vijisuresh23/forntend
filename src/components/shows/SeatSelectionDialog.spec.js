@@ -47,8 +47,8 @@ describe("Basic rendering and functionality", () => {
 
     it("Should display customer details input on next", () => {
         const {getByText} = render(<SeatSelectionDialog selectedShow={selectedShow} open={openDialog}
-                                                                     onClose={onClose}
-                                                                     updateShowsRevenue={updateShowRevenue}/>);
+                                                        onClose={onClose}
+                                                        updateShowsRevenue={updateShowRevenue}/>);
 
         expect(getByText("Customer Details is closed")).toBeTruthy();
 
