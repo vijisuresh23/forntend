@@ -5,11 +5,11 @@ variables:
 
 stages:
   - test
-  - package
+  - build-integration
   - deploy-integration
-  - promote-staging
+  - build-staging
   - deploy-staging
-  - promote-prod
+  - build-prod
   - deploy-prod
 
 test:
@@ -27,7 +27,7 @@ test:
   only:
     - master
 
-package:
+build-integration:
   image: docker:latest
   stage: package
   services:
@@ -54,19 +54,19 @@ deploy-integration:
   only:
     - master
 
-promote-staging:
+build-staging:
   image: docker:latest
-  stage: promote-staging
-  when: manual
-  variables:
-    PROMOTE_FROM: integration
+  stage: build-staging
   services:
     - docker:dind
   environment:
     name: staging
   script:
-    - cd deploy
-    - ./promote.sh $PROMOTE_FROM
+    - export REACT_IMAGE=$BOOKING_WEB_IMAGE_NAME:$CI_COMMIT_SHORT_SHA-$CI_ENVIRONMENT_SLUG
+    - echo "image info - $REACT_IMAGE"
+    - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
+    - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG -t $REACT_IMAGE .
+    - docker push $REACT_IMAGE
   only:
     - master
 
@@ -82,19 +82,19 @@ deploy-staging:
   only:
     - master
 
-promote-prod:
+build-prod:
   image: docker:latest
-  stage: promote-prod
-  when: manual
-  variables:
-    PROMOTE_FROM: staging
+  stage: build-prod
   services:
     - docker:dind
   environment:
     name: prod
   script:
-    - cd deploy
-    - ./promote.sh $PROMOTE_FROM
+    - export REACT_IMAGE=$BOOKING_WEB_IMAGE_NAME:$CI_COMMIT_SHORT_SHA-$CI_ENVIRONMENT_SLUG
+    - echo "image info - $REACT_IMAGE"
+    - docker -v login -u gitlab-ci-token -p $GITLAB_REGISTRY_PASSWORD registry.gitlab.com
+    - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG -t $REACT_IMAGE .
+    - docker push $REACT_IMAGE
   only:
     - master
 
