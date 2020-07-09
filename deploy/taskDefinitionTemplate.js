@@ -28,7 +28,7 @@ module.exports = {
             "awslogs-create-group": "true",
             "awslogs-group": "catalyst-log-group",
             "awslogs-region": "ap-south-1",
-            "awslogs-stream-prefix": "booking-web-"+process.env.CI_ENVIRONMENT_SLUG
+            "awslogs-stream-prefix": "booking-web"+process.env.TEAM_ID+"-"+process.env.CI_ENVIRONMENT_SLUG
           }
         }
       }
@@ -36,6 +36,6 @@ module.exports = {
     "volumes": [],
     "networkMode": "bridge",
     "placementConstraints": [],
-    "family": "booking-web-"+process.env.CI_ENVIRONMENT_SLUG
+    "family": "booking-web"+process.env.TEAM_ID+"-"+process.env.CI_ENVIRONMENT_SLUG
   }
 }

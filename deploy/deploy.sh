@@ -23,14 +23,14 @@ node ecs.js taskDefinitionTemplate
 echo "Registering task definition"
 aws ecs register-task-definition --cli-input-json file://task-definition.json
 
-status=$(aws ecs list-services --cluster "team$TEAM_ID" | grep "booking-web-$CI_ENVIRONMENT_SLUG") || true
+status=$(aws ecs list-services --cluster "team$TEAM_ID" | grep "booking-web$TEAM_ID-$CI_ENVIRONMENT_SLUG") || true
 
 if [ -z "$status" ]; then
   echo "Registering service definition"
   aws ecs create-service --cli-input-json file://service.json
 else
   echo "Service already exists. Updating service.."
-  aws ecs update-service --force-new-deployment --service "booking-web-$CI_ENVIRONMENT_SLUG" --task-definition "booking-web-$CI_ENVIRONMENT_SLUG" --cluster "team$TEAM_ID"
+  aws ecs update-service --force-new-deployment --service "booking-web-$CI_ENVIRONMENT_SLUG" --task-definition "booking-web$TEAM_ID-$CI_ENVIRONMENT_SLUG" --cluster "team$TEAM_ID"
 fi
 
 echo "running clean up"
