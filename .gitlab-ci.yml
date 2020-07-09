@@ -57,6 +57,7 @@ deploy-integration:
 build-staging:
   image: docker:latest
   stage: build-staging
+  when: manual
   services:
     - docker:dind
   environment:
@@ -85,6 +86,7 @@ deploy-staging:
 build-prod:
   image: docker:latest
   stage: build-prod
+  when: manual
   services:
     - docker:dind
   environment:
