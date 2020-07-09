@@ -29,7 +29,7 @@ test:
 
 build-integration:
   image: docker:latest
-  stage: package
+  stage: build-integration
   services:
     - docker:dind
   environment:
