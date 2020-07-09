@@ -1,8 +1,8 @@
 const API_HOST_LOCAL = "http://localhost:8080";
 const API_HOST_CI = "https://123.45.67.89";
-const API_HOST_INTEGRATION = "http://ec2-15-206-165-102.ap-south-1.compute.amazonaws.com:8080";
-const API_HOST_STAGING = "http://ec2-15-206-165-102.ap-south-1.compute.amazonaws.com:8081";
-const API_HOST_PROD = "http://ec2-15-206-165-102.ap-south-1.compute.amazonaws.com:8082";
+const API_HOST_INTEGRATION = "http://ec2-13-127-44-12.ap-south-1.compute.amazonaws.com:8080";
+const API_HOST_STAGING = "http://ec2-13-127-44-12.ap-south-1.compute.amazonaws.com:8081";
+const API_HOST_PROD = "http://ec2-13-127-44-12.ap-south-1.compute.amazonaws.com:8082";
 
 const UI_HOST_LOCAL = "https://localhost:3000";
 const UI_HOST_CI = "https://localhost:3000";
