@@ -3,14 +3,10 @@ import {Dialog, DialogContent, Typography} from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert/Alert";
 import styles from "./styles/customerDetailsDialogStyles"
 
-const BookingConfirmation = ({bookingConfirmation, showConfirmation, onClose}) => {
+const BookingConfirmation = ({bookingConfirmation, showConfirmation}) => {
     const classes = styles();
-    const handleClose = () => {
-        onClose();
-    };
-
     return (
-        <Dialog open={showConfirmation} onClose={handleClose}>
+      <Dialog open={showConfirmation}>
             <Alert severity="success">
                 Seats booked successfully!
             </Alert>

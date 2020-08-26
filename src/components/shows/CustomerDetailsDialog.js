@@ -54,13 +54,8 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
             onClose();
         }
     };
-
-    const closeConfirmation = () => {
-        setShowConfirmation(false);
-    }
-
     return (
-        <>
+      <>
             <Dialog open={open} onClose={onClose} maxWidth={false}>
                 <Typography variant="h6" className={classes.dialogHeader}>
                     Enter Customer Details
@@ -102,8 +97,7 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
                 </Formik>
             </Dialog>
 
-            <BookingConfirmation bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation}
-                                 onClose={closeConfirmation}/>
+            <BookingConfirmation bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation} />
 
             <Snackbar open={success === false} autoHideDuration={2000} onClose={() => setSuccess(null)}>
                 <Alert severity="error">
