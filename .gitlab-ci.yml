@@ -2,6 +2,7 @@ image: node:latest
 
 variables:
   BOOKING_WEB_IMAGE_NAME: registry.gitlab.com/tw-catalyst/booking-web/reactapp
+  DOCKER_HOST: tcp://localhost:2375
 
 stages:
   - test
