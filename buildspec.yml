@@ -23,7 +23,7 @@ phases:
       - echo "Pushing $REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
       - docker push "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
       - echo "Creating image definitions file"
-      - printf '[{"name":"frontend","imageUri":"%s"},' "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> imagedefinitions.json
+      - printf '[{"name":"frontend","imageUri":"%s"}]' "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> imagedefinitions.json
 
 artifacts:
   files: imagedefinitions.json
