@@ -32,4 +32,8 @@ env > /home/ec2-user/environment_variables_of_frontend_for_$ENVIRONMENT
 echo "Logging into ECR"
 $(aws ecr get-login --no-include-email --registry-ids $REGISTRY_ID)
 
+echo "Removing last container if it was there..."
+docker rm -f frontend_${ENVIRONMENT} || true
+
+echo "Starting new container../"
 docker container run -p $UI_PORT:80 --rm --name frontend_${ENVIRONMENT} -d $UI_IMAGE
