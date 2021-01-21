@@ -11,6 +11,9 @@ permissions:
     mode: 500
     type:
       - file
+  - object: /home/ec2-user/deployment/frontend
+    group: ec2-user
+    owner: ec2-user
 hooks:
   AfterInstall:
     - location: scripts/start.sh
