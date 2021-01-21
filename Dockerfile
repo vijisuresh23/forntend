@@ -12,7 +12,7 @@ ENV PUBLIC_HOSTNAME_AND_PORT $PUBLIC_HOSTNAME_AND_PORT
 ENV IS_EC2 $IS_EC2
 RUN yarn build
 
-FROM ${REGISTRY_URI}/nginx:alpine
+FROM ${REGISTRY_URI}/nginx:latest
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
 
