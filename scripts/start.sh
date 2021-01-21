@@ -28,4 +28,4 @@ export IS_EC2=true
 
 env > /home/ec2-user/environment_variables_of_frontend_for_$ENVIRONMENT
 
-docker container run -d -p $UI_PORT:80 --rm -name frontend_${ENVIRONMENT}
+docker container run -p $UI_PORT:80 --rm --name frontend_${ENVIRONMENT} -d $UI_IMAGE
