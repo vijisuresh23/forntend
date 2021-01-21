@@ -17,7 +17,7 @@ phases:
       - yarn install
       - yarn test
       - yarn build
-      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG -t "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" .
+      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REGISTRY_URI="${REGISTRY_URI}" -t "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" .
   post_build:
     commands:
       - echo "Pushing $REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
