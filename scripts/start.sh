@@ -14,12 +14,12 @@ export PREFIX="/neev-$BATCH_ID/team-$TEAM_ID/$ENVIRONMENT"
 
 cd /home/ec2-user/deployment/frontend
 mkdir -p $ENVIRONMENT
-mv outputs.sh $ENVIRONMENT/
+mv frontend-outputs.sh $ENVIRONMENT/
 cd $ENVIRONMENT
 echo "Existing contents of the directory are"
 ls
 
-. ./outputs.sh # exports UI_IMAGE
+. ./frontend-outputs.sh # exports UI_IMAGE
 
 export UI_PORT=`aws ssm get-parameters --name "$PREFIX/UI_PORT" | jq ".Parameters[0].Value" | tr -d \"`
 export REGISTRY_ID=`aws ssm get-parameters --name "$PREFIX/REGISTRY_ID" | jq ".Parameters[0].Value" | tr -d \"`

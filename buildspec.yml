@@ -23,7 +23,7 @@ phases:
       - echo "Pushing $REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
       - docker push "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
       - echo "Creating image definitions file"
-      - echo "export UI_IMAGE=$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> outputs.sh
+      - echo "export UI_IMAGE=$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> frontend-outputs.sh
       - printf '[{"name":"frontend","imageUri":"%s"}]' "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> imagedefinitions.json
 
 artifacts:
@@ -31,4 +31,4 @@ artifacts:
     - imagedefinitions.json
     - appspec.yml
     - scripts/start.sh
-    - outputs.sh
+    - frontend-outputs.sh
