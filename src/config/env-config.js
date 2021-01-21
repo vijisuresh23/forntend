@@ -36,7 +36,7 @@ const HOSTS = {
 };
 
 export const serviceUrl = () => {
-    if(process.env.IS_EC2 == "true") {
+    if(process.env.IS_EC2 === "true") {
         return process.env.PUBLIC_HOSTNAME_AND_PORT || ENV_LOCAL;
     }
 
