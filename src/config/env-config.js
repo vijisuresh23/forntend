@@ -36,6 +36,10 @@ const HOSTS = {
 };
 
 export const serviceUrl = () => {
+    if(process.env.IS_EC2 == "true") {
+        return process.env.PUBLIC_HOSTNAME_AND_PORT || ENV_LOCAL;
+    }
+
     const environment = process.env.REACT_APP_ENVIRONMENT || ENV_LOCAL;
     return HOSTS[environment].API
 };

@@ -22,5 +22,10 @@ ls
 . ./outputs.sh # exports UI_IMAGE
 
 export UI_PORT=`aws ssm get-parameters --name "$PREFIX/UI_PORT" | jq ".Parameters[0].Value" | tr -d \"`
+export PUBLIC_HOSTNAME=`curl http://169.254.169.254/latest/meta-data/public-hostname` # hitting instance metadata service
+export PUBLIC_HOSTNAME_AND_PORT=$PUBLIC_HOSTNAME:$UI_PORT
+export IS_EC2=true
+
+env > /home/ec2-user/environment_variables_of_frontend_for_$ENVIRONMENT
 
 docker container run -d -p $UI_PORT:80 --rm -name frontend_${ENVIRONMENT}
