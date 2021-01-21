@@ -22,6 +22,7 @@ ls
 . ./outputs.sh # exports UI_IMAGE
 
 export UI_PORT=`aws ssm get-parameters --name "$PREFIX/UI_PORT" | jq ".Parameters[0].Value" | tr -d \"`
+export REGISTRY_ID=`aws ssm get-parameters --name "$PREFIX/REGISTRY_ID" | jq ".Parameters[0].Value" | tr -d \"`
 export PUBLIC_HOSTNAME=`curl http://169.254.169.254/latest/meta-data/public-hostname` # hitting instance metadata service
 export PUBLIC_HOSTNAME_AND_PORT=$PUBLIC_HOSTNAME:$UI_PORT
 export IS_EC2=true
