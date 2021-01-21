@@ -12,10 +12,10 @@ export TEAM_ID=${identifiers[3]}
 export ENVIRONMENT=${identifiers[6]}
 export PREFIX="/neev-$BATCH_ID/team-$TEAM_ID/$ENVIRONMENT"
 
-cd /home/ec2-user/deployment/frontend
-mkdir -p $ENVIRONMENT
-mv frontend-outputs.sh $ENVIRONMENT/
-cd $ENVIRONMENT
+cd /home/ec2-user/deployment/
+mkdir -p $frontend_ENVIRONMENT
+mv frontend-outputs.sh $frontend_ENVIRONMENT/
+cd $frontend_ENVIRONMENT
 echo "Existing contents of the directory are"
 ls
 
