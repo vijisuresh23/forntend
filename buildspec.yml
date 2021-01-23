@@ -7,7 +7,9 @@ phases:
       - docker --version
       - CI_COMMIT_SHORT_SHA=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-6)
       - REACT_IMAGE="$REGISTRY_URI/neev-$BATCH_ID-team-$TEAM_ID-frontend-ecr"
+      - REACT_EC2_IMAGE="$REGISTRY_URI/neev-$BATCH_ID-team-$TEAM_ID-frontend-ec2"
       - echo "building $REACT_IMAGE with tag $CI_COMMIT_SHORT_SHA"
+      - echo "building $REACT_EC2_IMAGE with tag $CI_COMMIT_SHORT_SHA"
       - $(aws ecr get-login --no-include-email --region $REGION --registry-ids $REGISTRY_ID) # TODO : depricated; find a better way
   build:
     commands:
@@ -18,12 +20,15 @@ phases:
       - yarn test
       - yarn build
       - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REGISTRY_URI="${REGISTRY_URI}" -t "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" .
+      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg IS_EC2=true --build-arg REGISTRY_URI="${REGISTRY_URI}" -t "$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA" .
   post_build:
     commands:
       - echo "Pushing $REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
       - docker push "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
+      - echo "Pushing $REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA"
+      - docker push "$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA"
+      - echo "export UI_IMAGE=$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA" >> frontend-outputs.sh
       - echo "Creating image definitions file"
-      - echo "export UI_IMAGE=$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> frontend-outputs.sh
       - printf '[{"name":"frontend","imageUri":"%s"}]' "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> imagedefinitions.json
 
 artifacts:
