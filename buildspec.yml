@@ -20,7 +20,7 @@ phases:
       - yarn test
       - yarn build
       - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REGISTRY_URI="${REGISTRY_URI}" -t "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" .
-      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg IS_EC2=true --build-arg REGISTRY_URI="${REGISTRY_URI}" -t "$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA" .
+      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REACT_APP_ON_EC2=true --build-arg REGISTRY_URI="${REGISTRY_URI}" --build-arg PUBLIC_HOSTNAME_AND_PORT="${PUBLIC_HOSTNAME_AND_PORT}" -t "$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA" .
   post_build:
     commands:
       - echo "Pushing $REACT_IMAGE:$CI_COMMIT_SHORT_SHA"

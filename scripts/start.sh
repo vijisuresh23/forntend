@@ -5,7 +5,6 @@ set -v
 echo "Running this as `whoami`"
 echo "Currently running this in $PWD"
 
-
 IFS='-' read -ra identifiers <<< $DEPLOYMENT_GROUP_NAME  # DEPLOYMENT_GROUP_NAME is of form neev-xx-team-xx-[backend|frontend]-[deployment|seed]-[integration|staging|production]
 export BATCH_ID=${identifiers[1]}
 export TEAM_ID=${identifiers[3]}
@@ -23,9 +22,6 @@ ls
 
 export UI_PORT=`aws ssm get-parameters --name "$PREFIX/UI_PORT" | jq ".Parameters[0].Value" | tr -d \"`
 export REGISTRY_ID=`aws ssm get-parameters --name "$PREFIX/REGISTRY_ID" | jq ".Parameters[0].Value" | tr -d \"`
-export PUBLIC_HOSTNAME=`curl http://169.254.169.254/latest/meta-data/public-hostname` # hitting instance metadata service
-export PUBLIC_HOSTNAME_AND_PORT=$PUBLIC_HOSTNAME:$UI_PORT
-export IS_EC2=true
 
 env > /home/ec2-user/environment_variables_of_frontend_for_$ENVIRONMENT
 
