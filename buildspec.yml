@@ -13,27 +13,21 @@ phases:
       - $(aws ecr get-login --no-include-email --region $REGION --registry-ids $REGISTRY_ID) # TODO : depricated; find a better way
   build:
     commands:
-      - yarn --version
+      - npm --version
       - node --version
-      - yarn config set cache-folder .yarn
-      - yarn install
-      - yarn test
-      - yarn build
-      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REGISTRY_URI="${REGISTRY_URI}" -t "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" .
-      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REACT_APP_ON_EC2=true --build-arg REGISTRY_URI="${REGISTRY_URI}" --build-arg PUBLIC_HOSTNAME_AND_PORT="${PUBLIC_HOSTNAME_AND_PORT}" -t "$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA" .
+      - npm config set cache-folder .npm
+      - npm install
+      - npm test
+      - npm build
+      - docker build --build-arg ENVIRONMENT=$CI_ENVIRONMENT_SLUG --build-arg REACT_APP_ON_EC2=true --build-arg REGISTRY_URI="${REGISTRY_URI}" --build-arg PUBLIC_HOSTNAME_AND_PORT="${PUBLIC_HOSTNAME_AND_PORT}" -t "$REACT_EC2_IMAGE:${CI_ENVIRONMENT_SLUG}_${CI_COMMIT_SHORT_SHA}" .
   post_build:
     commands:
-      - echo "Pushing $REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
-      - docker push "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA"
-      - echo "Pushing $REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA"
-      - docker push "$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA"
-      - echo "export UI_IMAGE=$REACT_EC2_IMAGE:$CI_COMMIT_SHORT_SHA" >> frontend-outputs.sh
-      - echo "Creating image definitions file"
-      - printf '[{"name":"frontend","imageUri":"%s"}]' "$REACT_IMAGE:$CI_COMMIT_SHORT_SHA" >> imagedefinitions.json
+      - echo "Pushing $REACT_EC2_IMAGE:${CI_ENVIRONMENT_SLUG}_${CI_COMMIT_SHORT_SHA}"
+      - docker push "$REACT_EC2_IMAGE:${CI_ENVIRONMENT_SLUG}_${CI_COMMIT_SHORT_SHA}"
+      - echo "export UI_IMAGE=$REACT_EC2_IMAGE:${CI_ENVIRONMENT_SLUG}_${CI_COMMIT_SHORT_SHA}" >> frontend-outputs.sh
 
 artifacts:
   files:
-    - imagedefinitions.json
     - appspec.yml
     - scripts/start.sh
     - frontend-outputs.sh
