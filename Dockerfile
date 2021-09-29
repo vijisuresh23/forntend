@@ -1,5 +1,5 @@
 ARG REGISTRY_URI
-FROM ${REGISTRY_URI}/node:latest as build
+FROM ${REGISTRY_URI}/node:lts-alpine3.14 as build
 
 WORKDIR /app
 COPY package.json ./
@@ -18,7 +18,7 @@ ENV REACT_APP_PUBLIC_HOSTNAME_AND_PORT $PUBLIC_HOSTNAME_AND_PORT
 ENV REACT_APP_ON_EC2 $REACT_APP_ON_EC2
 RUN yarn build
 
-FROM ${REGISTRY_URI}/nginx:latest
+FROM ${REGISTRY_URI}/nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
 
