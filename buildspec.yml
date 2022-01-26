@@ -6,8 +6,8 @@ phases:
       - aws --version
       - docker --version
       - CI_COMMIT_SHORT_SHA=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-6)
-      - REACT_IMAGE="$REGISTRY_URI/neev-$BATCH_ID-team-$TEAM_ID-frontend-ecr"
-      - REACT_EC2_IMAGE="$REGISTRY_URI/neev-$BATCH_ID-team-$TEAM_ID-frontend-ec2"
+      - REACT_IMAGE="$REGISTRY_URI/neev-$BATCH_ID-$TEAM_ID-frontend-ecr"
+      - REACT_EC2_IMAGE="$REGISTRY_URI/neev-$BATCH_ID-$TEAM_ID-frontend-ec2"
       - echo "building $REACT_IMAGE with tag $CI_COMMIT_SHORT_SHA"
       - echo "building $REACT_EC2_IMAGE with tag $CI_COMMIT_SHORT_SHA"
       - $(aws ecr get-login --no-include-email --region $REGION --registry-ids $REGISTRY_ID) # TODO : depricated; find a better way
