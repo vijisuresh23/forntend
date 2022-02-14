@@ -1,13 +1,28 @@
 import React from "react";
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import MovieIcon from '@material-ui/icons/Movie';
+import Person from '@material-ui/icons/Person';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import styles from "./styles/headerStyles";
 import PropTypes from "prop-types";
 
+
 const Header = ({onLogout, isAuthenticated}) => {
     const classes = styles();
 
+    const profileSection =() =>{
+        if(isAuthenticated){
+            return(
+                <div className={classes.profile}>
+                    <Typography lassName={classes.headerLogo} variant="body1"> 
+                    Welcome Admin!
+                    </Typography>
+                    <a href="/profile"><Person/></a>
+                    
+                </div>
+            );
+        }
+    };
     const logoutSection = () => {
         if (isAuthenticated) {
             return (
@@ -17,6 +32,7 @@ const Header = ({onLogout, isAuthenticated}) => {
                         Logout
                     </Typography>
                 </div>
+            
             );
         }
     };
@@ -30,6 +46,7 @@ const Header = ({onLogout, isAuthenticated}) => {
                         SkyFox Cinema
                     </Typography>
                 </a>
+                {profileSection()}
                 {logoutSection()}
             </Toolbar>
         </AppBar>

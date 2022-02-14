@@ -9,12 +9,17 @@ export default makeStyles((theme) => ({
         },
         logoutLink: {
             display: 'flex',
-            justifyContent: "flex-start",
+            // justifyContent: "flex-start",
             alignItems: "center",
-            cursor: "pointer"
+            cursor: "pointer",
+            marginright: "20px"
         },
         cinemaLogoIcon: {
             fontSize: '2.25em'
+        },
+        personIcon: {
+            fontSize: '3.25em',
+            marginright:'2em'
         },
         headerLogo: {
             marginLeft: '0.15em'
