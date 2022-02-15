@@ -23,4 +23,11 @@ export default () => {
         handleLogin: handleLogin,
         handleLogout: handleLogout
     };
+
+    // const handlePasswordChange= async(oldpassword, newpassword)=>{
+    //    const Details= await changepassword(oldpassword,newpassword);
+    //     setIsAuthenticated(true);
+    //     return Details;
+
+    // }
 }

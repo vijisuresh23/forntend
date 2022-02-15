@@ -35,3 +35,16 @@ export const logout = () => {
 const authBasic = (username, password) => {
     return window.btoa(username + ':' + password);
 }
+
+export const changepassword = async (oldpassword, newpassword) => {
+    const token = authBasic(oldpassword, newpassword);
+    const config = {
+        headers: {
+            Authorization: 'Basic ' + token
+        }
+    };
+    const response = await axios.get(`${urls.service}/changepassword`, config);
+    const Details = response.data;
+    localStorage.setItem(tokenKey, token)
+    return Details;
+}

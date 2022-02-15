@@ -1,6 +1,6 @@
 import React from "react";
 import {TextField} from "@material-ui/core";
-import styles from './Styles/ProfileStyles'
+import styles from './Styles/ProfileStyles';
 import FormDialog from "./ChangePasswordDialog";
 
 

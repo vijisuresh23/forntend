@@ -11,12 +11,20 @@ export default makeStyles((theme) =>
             flexDirection: "column"
         },
         loginButton: {
-            marginTop: "35px"
+            marginTop: "15px",
+            backgroundColor:'#005ce6'
         },
         nameDiv:{
             display:"flex", 
             flexDirection: "row", 
             alignItems: "center"
+        },
+        loginForm: {
+            display: "flex",
+            flexDirection: "column"
+        },
+        loginErrorMessage: {
+            marginTop: "8px"
         }
     })
 );
